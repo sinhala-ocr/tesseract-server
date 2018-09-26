@@ -1,0 +1,13 @@
+@import "variables";
+
+:host{
+  display: inline-flex;
+  flex-direction: row;
+
+  flex-basis: 4rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  border: 0 solid $border-color;
+  border-bottom-width: $border-width;
+}

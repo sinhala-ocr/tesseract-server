@@ -1,0 +1,12 @@
+@import "variables";
+@import "mixins";
+@import "material";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+// Angular material
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }

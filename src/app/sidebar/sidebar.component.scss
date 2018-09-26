@@ -1,0 +1,16 @@
+@import "variables";
+
+:host {
+  display: inline-flex;
+  flex-direction: column;
+
+  flex-basis: 16rem;
+  flex-grow: 0;
+
+  border: 0 solid $border-color;
+  border-right-width: $border-width;
+
+  button{
+    margin: 0.2rem;
+  }
+}
