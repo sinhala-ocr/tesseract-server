@@ -19,7 +19,9 @@ import {PreferencesComponent}     from './preferences/preferences.component'
 import {ProfileComponent}         from './profile/profile.component'
 import {SignInComponent}          from './sign-in/sign-in.component'
 import {SignUpComponent}          from './sign-up/sign-up.component'
-import {DashboardComponent}       from './dashboard/dashboard.component'
+import {DashboardComponent}       from './dashboard/dashboard.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment'
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import {DashboardComponent}       from './dashboard/dashboard.component'
 
     BrowserAnimationsModule,
 
-    MatButtonModule
+    MatButtonModule,
+
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers   : [],
   bootstrap   : [AppComponent]
