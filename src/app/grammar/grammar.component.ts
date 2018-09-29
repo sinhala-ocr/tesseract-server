@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core'
 
 @Component({
-  selector: 'app-grammar',
+  selector   : 'app-grammar',
   templateUrl: './grammar.component.html',
-  styleUrls: ['./grammar.component.scss']
+  styleUrls  : ['./grammar.component.scss']
 })
 export class GrammarComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

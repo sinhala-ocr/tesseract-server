@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core'
 
 @Component({
-  selector: 'app-confusion-matrix',
+  selector   : 'app-confusion-matrix',
   templateUrl: './confusion-matrix.component.html',
-  styleUrls: ['./confusion-matrix.component.scss']
+  styleUrls  : ['./confusion-matrix.component.scss']
 })
 export class ConfusionMatrixComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
