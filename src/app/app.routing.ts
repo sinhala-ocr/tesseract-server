@@ -1,5 +1,6 @@
 import {NgModule}                 from '@angular/core'
 import {RouterModule, Routes}     from '@angular/router'
+
 import {SignInComponent}          from './sign-in/sign-in.component'
 import {SignUpComponent}          from './sign-up/sign-up.component'
 import {ProfileComponent}         from './profile/profile.component'
@@ -19,8 +20,8 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'preferences', component: PreferencesComponent},
 
+  {path: '', component: OcrComponent},
   {path: 'dashboard', component: DashboardComponent},
-  {path: '', component: DashboardComponent},
   {path: 'library', component: LibraryComponent},
   {path: 'ocr', component: OcrComponent},
   {path: 'cmatrix', component: ConfusionMatrixComponent},
@@ -34,5 +35,5 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class RoutingModule {
+export class AppRouting {
 }

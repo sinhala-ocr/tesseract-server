@@ -4,7 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 import {MatButtonModule} from '@angular/material'
 
-import {RoutingModule} from './routing.module'
+import {AppRouting} from './app.routing'
 
 import {AppComponent}             from './app.component'
 import {HeaderComponent}          from './header/header.component'
@@ -21,7 +21,9 @@ import {SignInComponent}          from './sign-in/sign-in.component'
 import {SignUpComponent}          from './sign-up/sign-up.component'
 import {DashboardComponent}       from './dashboard/dashboard.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment'
+import { environment } from '../environments/environment';
+import { TaskListComponent } from './task-list/task-list.component';
+import { TaskListItemComponent } from './task-list-item/task-list-item.component'
 
 @NgModule({
   declarations: [
@@ -38,11 +40,13 @@ import { environment } from '../environments/environment'
     ProfileComponent,
     SignInComponent,
     SignUpComponent,
-    DashboardComponent
+    DashboardComponent,
+    TaskListComponent,
+    TaskListItemComponent
   ],
   imports     : [
     BrowserModule,
-    RoutingModule,
+    AppRouting,
 
     BrowserAnimationsModule,
 
