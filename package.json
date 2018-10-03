@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run build && node dist/index.js",
-    "build": "rimraf dist/ && babel ./server --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "build": "rimraf dist/ && ng build --prod && babel ./server --out-dir dist/server/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "ng lint",
     "e2e": "ng e2e"
