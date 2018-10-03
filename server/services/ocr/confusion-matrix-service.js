@@ -1,3 +1,3 @@
-export default class ConfusionMatrixServices {
+export default class ConfusionMatrixService {
 
 }

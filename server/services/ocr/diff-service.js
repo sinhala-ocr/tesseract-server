@@ -1,3 +1,3 @@
-export default class DiffServices {
+export default class DiffService {
 
 }

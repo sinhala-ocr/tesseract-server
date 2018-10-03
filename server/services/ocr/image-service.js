@@ -1,3 +1,3 @@
-export default class ImageServices {
+export default class ImageService {
 
 }

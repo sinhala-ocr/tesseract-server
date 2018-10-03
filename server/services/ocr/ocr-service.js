@@ -1,6 +1,6 @@
 import shell from 'shelljs'
 
-export default class OcrServices {
+export default class OcrService {
 
   static ocrLocal(inputPath, outputPath) {
 
