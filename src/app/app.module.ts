@@ -1,29 +1,29 @@
-import {BrowserModule}           from '@angular/platform-browser'
-import {NgModule}                from '@angular/core'
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {MatButtonModule} from '@angular/material'
+import {MatButtonModule} from '@angular/material';
 
-import {AppRouting} from './app.routing'
+import {AppRouting} from './app.routing';
 
-import {AppComponent}             from './app.component'
-import {HeaderComponent}          from './header/header.component'
-import {FooterComponent}          from './footer/footer.component'
-import {SidebarComponent}         from './sidebar/sidebar.component'
-import {LibraryComponent}         from './library/library.component'
-import {OcrComponent}             from './ocr/ocr.component'
-import {GrammarComponent}         from './grammar/grammar.component'
-import {ConfusionMatrixComponent} from './confusion-matrix/confusion-matrix.component'
-import {ComparisonComponent}      from './comparison/comparison.component'
-import {PreferencesComponent}     from './preferences/preferences.component'
-import {ProfileComponent}         from './profile/profile.component'
-import {SignInComponent}          from './sign-in/sign-in.component'
-import {SignUpComponent}          from './sign-up/sign-up.component'
-import {DashboardComponent}       from './dashboard/dashboard.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { TaskListComponent } from './task-list/task-list.component';
-import { TaskListItemComponent } from './task-list-item/task-list-item.component'
+import {AppComponent} from './app.component';
+import {HeaderComponent} from './components/header/header.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {SidebarComponent} from './components/sidebar/sidebar.component';
+import {LibraryComponent} from './components/library/library.component';
+import {OcrComponent} from './components/ocr/ocr.component';
+import {GrammarComponent} from './components/grammar/grammar.component';
+import {ConfusionMatrixComponent} from './components/confusion-matrix/confusion-matrix.component';
+import {ComparisonComponent} from './components/comparison/comparison.component';
+import {PreferencesComponent} from './components/preferences/preferences.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {SignInComponent} from './components/sign-in/sign-in.component';
+import {SignUpComponent} from './components/sign-up/sign-up.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
+import {OcrTaskListComponent} from './components/ocr-task-list/ocr-task-list.component';
+import {OcrTaskListItemComponent} from './components/ocr-task-list-item/ocr-task-list-item.component';
 
 @NgModule({
   declarations: [
@@ -41,10 +41,10 @@ import { TaskListItemComponent } from './task-list-item/task-list-item.component
     SignInComponent,
     SignUpComponent,
     DashboardComponent,
-    TaskListComponent,
-    TaskListItemComponent
+    OcrTaskListComponent,
+    OcrTaskListItemComponent,
   ],
-  imports     : [
+  imports: [
     BrowserModule,
     AppRouting,
 
@@ -52,10 +52,10 @@ import { TaskListItemComponent } from './task-list-item/task-list-item.component
 
     MatButtonModule,
 
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
-  providers   : [],
-  bootstrap   : [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

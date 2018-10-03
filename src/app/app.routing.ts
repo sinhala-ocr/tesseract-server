@@ -1,16 +1,16 @@
-import {NgModule}                 from '@angular/core'
-import {RouterModule, Routes}     from '@angular/router'
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import {SignInComponent}          from './sign-in/sign-in.component'
-import {SignUpComponent}          from './sign-up/sign-up.component'
-import {ProfileComponent}         from './profile/profile.component'
-import {PreferencesComponent}     from './preferences/preferences.component'
-import {DashboardComponent}       from './dashboard/dashboard.component'
-import {LibraryComponent}         from './library/library.component'
-import {OcrComponent}             from './ocr/ocr.component'
-import {ConfusionMatrixComponent} from './confusion-matrix/confusion-matrix.component'
-import {ComparisonComponent}      from './comparison/comparison.component'
-import {GrammarComponent}         from './grammar/grammar.component'
+import {SignInComponent} from './components/sign-in/sign-in.component';
+import {SignUpComponent} from './components/sign-up/sign-up.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {PreferencesComponent} from './components/preferences/preferences.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {LibraryComponent} from './components/library/library.component';
+import {OcrComponent} from './components/ocr/ocr.component';
+import {ConfusionMatrixComponent} from './components/confusion-matrix/confusion-matrix.component';
+import {ComparisonComponent} from './components/comparison/comparison.component';
+import {GrammarComponent} from './components/grammar/grammar.component';
 
 
 const routes: Routes = [
@@ -27,7 +27,7 @@ const routes: Routes = [
   {path: 'cmatrix', component: ConfusionMatrixComponent},
   {path: 'comparison', component: ComparisonComponent},
   {path: 'grammar', component: GrammarComponent}
-]
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
