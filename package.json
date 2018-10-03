@@ -4,8 +4,9 @@
   "main": "server/index.js",
   "scripts": {
     "ng": "ng",
-    "start": "npm run build && node dist/index.js",
+    "start": "npm run build && node dist/server/index.js",
     "build": "rimraf dist/ && ng build --prod && babel ./server --out-dir dist/server/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "dev": "rimraf dist/ & ng build --watch & babel ./server --out-dir dist/server/ --watch --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files & nodemon dist/server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -32,8 +33,8 @@
     "hammerjs": "^2.0.8",
     "mongoose": "^5.2.17",
     "morgan": "^1.9.1",
-    "nodemon": "^1.18.4",
     "rxjs": "~6.3.3",
+    "shelljs": "^0.8.2",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -54,6 +55,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "nodemon": "^1.18.4",
     "protractor": "~5.4.0",
     "rimraf": "^2.6.2",
     "ts-node": "~7.0.0",
