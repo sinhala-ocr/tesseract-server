@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
+// >>>>>>>>>>>>>>>>>> SERVICES IMPORT
+// import * as s from '../services/index';
+// s.OcrServices.ocrDocker('sss', 'yyyy')
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 // declare axios for making http requests
 const axios = require('axios');
 const API = 'https://jsonplaceholder.typicode.com';
