@@ -1,0 +1,11 @@
+{
+  "server" : {
+    "database" : {
+      "host" : "localhost",
+      "port" : 3306,
+      "user" : "tesseract",
+      "database" : "tesseract_server",
+      "password" : ""
+    }
+  }
+}
