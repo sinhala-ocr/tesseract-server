@@ -15,6 +15,27 @@ router.get('/', (req, res) => {
   res.send('api works');
 });
 
+// Get all words in the dictionary
+router.get('/dictionary/get-all-words', (req, res) => {
+  var dictionary = require('../controllers/grammar/dictionary-controller');
+
+  dictionary.getAllWords(function (err, result){
+    console.log(result)
+    res.send(result);
+  })
+});
+
+// Get all words in the dictionary
+router.get('/dictionary/add-word', (req, res) => {
+  var dictionary = require('../controllers/grammar/dictionary-controller');
+  var word = req.query.word;
+
+  dictionary.addWord(word, function (err, result){
+    console.log(result)
+    res.send(result);
+  })
+})
+
 // Get all posts
 router.get('/posts', (req, res) => {
   // Get posts from the mock api
