@@ -1,3 +1,30 @@
-<p>
-  grammar works!
-</p>
+<mat-card class="input-mat-card">
+    <!-- Text area -->
+    <mat-form-field>
+            <textarea class="input-textarea" matInput placeholder="Input text" [(ngModel)]="inputText"></textarea>
+    </mat-form-field>
+    
+    <!-- Button area -->
+    <div class="button-panel">
+        <mat-checkbox class="example-margin" [(ngModel)]="mandatory_rules">Mandatory Rules</mat-checkbox>
+        <mat-checkbox class="example-margin" [(ngModel)]="ambibuity_check">Ambiguity Check</mat-checkbox>
+        <mat-checkbox class="example-margin" [(ngModel)]="legitimacy_check">Legitimacy Check</mat-checkbox>
+        <mat-checkbox class="example-margin" [(ngModel)]="dictionary_check">Dictionary Check</mat-checkbox>
+        <button mat-stroked-button color="primary" (click)="onClickProcessButton()">Process</button>
+    </div>
+
+    <br><br>
+
+    <mat-divider></mat-divider>
+
+    <div>
+        <div class="output-textarea" [(innerHtml)]="outputText"></div>
+    </div>
+
+
+
+
+
+</mat-card>
+
+

@@ -1,7 +1,7 @@
 module.exports = {
   // Get database connection
   getConnection(){
-    var mysql = require('mysql');
+    var mysql  = require('mysql');
     var config = require('config');
   
     var dbConfig = config.get('server.database');
@@ -11,7 +11,7 @@ module.exports = {
   },
 
   executeQuery(query, callback){
-    var mysql = require('mysql');
+    var mysql  = require('mysql');
     var config = require('config');
   
     var dbConfig = config.get('server.database');

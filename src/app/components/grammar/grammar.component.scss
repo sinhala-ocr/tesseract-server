@@ -1,1 +1,47 @@
 @import "content-panel";
+
+mat-card {
+  width: 100%;
+  margin: 1em;
+}
+
+.input-mat-card {
+  
+}
+
+.input-textarea {
+  height: 100px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: whitesmoke;
+  // padding: 30px;  
+}
+
+.output-textarea {
+  
+}
+
+.button-panel {
+  // float: right;
+  margin-top: 0px;
+}
+
+
+button {
+  float: right;
+  margin-left: 10px;
+}
+
+mat-checkbox {
+  margin-right: 10px;
+}
+
+.grammar-content {
+  width: 100%;
+  overflow-y: scroll;
+}
+
+mat-form-field {
+  width: 100%;
+}

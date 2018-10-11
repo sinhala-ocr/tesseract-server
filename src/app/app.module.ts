@@ -3,6 +3,12 @@ import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {MatButtonModule} from '@angular/material';
+import {FormsModule} from '@angular/forms'; 
+import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { HttpClientModule } from '@angular/common/http';
 
 import {AppRouting} from './app.routing';
 
@@ -24,6 +30,8 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {OcrTaskListComponent} from './components/ocr-task-list/ocr-task-list.component';
 import {OcrTaskListItemComponent} from './components/ocr-task-list-item/ocr-task-list-item.component';
+
+
 
 @NgModule({
   declarations: [
@@ -51,6 +59,12 @@ import {OcrTaskListItemComponent} from './components/ocr-task-list-item/ocr-task
     BrowserAnimationsModule,
 
     MatButtonModule,
+    FormsModule,
+    MatInputModule,
+    MatCardModule,
+    MatDividerModule,
+    MatCheckboxModule,
+    HttpClientModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
