@@ -1,0 +1,29 @@
+:host{
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  flex-shrink: 0;
+
+  margin: 0.4rem 0.8rem;
+  padding: 0.4rem;
+
+  background-color: #ccfac0;
+
+  .ocr-task-list-item-details{
+    display: inline-flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    h3{
+      margin: 0 0 0.4rem;
+    }
+  }
+
+  .ocr-task-list-item-close-button{
+    display: inline-flex;
+    flex-direction: row;
+    flex-grow: 0;
+
+    justify-content: center;
+  }
+}

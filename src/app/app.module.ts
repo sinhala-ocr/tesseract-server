@@ -1,14 +1,16 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 import {MatButtonModule} from '@angular/material';
-import {FormsModule} from '@angular/forms'; 
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { HttpClientModule } from '@angular/common/http';
+import {MatIconModule} from '@angular/material/icon';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import {AppRouting} from './app.routing';
 
@@ -30,7 +32,6 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {OcrTaskListComponent} from './components/ocr-task-list/ocr-task-list.component';
 import {OcrTaskListItemComponent} from './components/ocr-task-list-item/ocr-task-list-item.component';
-
 
 
 @NgModule({
@@ -55,16 +56,18 @@ import {OcrTaskListItemComponent} from './components/ocr-task-list-item/ocr-task
   imports: [
     BrowserModule,
     AppRouting,
+    FormsModule,
+    HttpClientModule,
 
     BrowserAnimationsModule,
 
     MatButtonModule,
-    FormsModule,
     MatInputModule,
     MatCardModule,
     MatDividerModule,
     MatCheckboxModule,
-    HttpClientModule,
+    MatIconModule,
+    MatProgressBarModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
