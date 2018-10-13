@@ -41,15 +41,25 @@ router.post('/dictionary-check', (req, res) => {
   var text = req.body.text;
   var doc = textUtils.generateDocumentObject(text);
 
-
   dictionaryChecker.check(doc, function (err, result){
+    res.send(result);
+  })
+});
+
+// Exblock checkings
+router.post('/exblock-check', (req, res) => {
+  const exblockChecker = require('../controllers/grammar/checkers/exblock-checker');
+  const textUtils = require('../controllers/grammar/utils/text-utils');
+  var text = req.body.text;
+
+  var doc = textUtils.generateDocumentObject(text);
+
+  exblockChecker.check(doc, function (err, result){
     res.send(result);
   })
 });
 
 // Test
 router.get('/test', (req, res) => {
-  const controller = require('../controllers/grammar/utils/text-utils');
-  var x = controller.generateDocumentObject("sfaf\nsdf sdf");
-  res.send(x)
+
 });
