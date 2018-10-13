@@ -36,6 +36,17 @@ router.get('/dictionary/add-word', (req, res) => {
   })
 })
 
+
+// Apply mandatory rules
+router.post('/dictionary/apply-mandatory-rules', (req, res) => {
+  var controller = require('../controllers/grammar/mandatory-rule-controller');
+  var text = req.body.text;
+
+  controller.applyMandatoryRules(text, function (err, result){
+    res.send(result);
+  })
+})
+
 // Get all posts
 router.get('/posts', (req, res) => {
   // Get posts from the mock api
