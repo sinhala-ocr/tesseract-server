@@ -1,41 +1,38 @@
 // Get dependencies
-const express = require('express');
-const path = require('path');
-const http = require('http');
-const bodyParser = require('body-parser');
+const express    = require('express')
+const path       = require('path')
+const http       = require('http')
+const bodyParser = require('body-parser')
+const cors       = require('cors')
 
-// Get our API routes
-const api = require('./routes/api');
-
-const app = express();
+const app = express()
 
 // Parsers for POST data
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
 
 // Point static path to dist
-app.use(express.static(path.join(__dirname, '../dist/tesseract-server')));
+app.use(express.static(path.join(__dirname, '../dist/tesseract-server')))
 
-// Set our api routes
-app.use('/api', api);
+const corsOptions = {
+  origin              : '*',
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions))
+
+// Set api routes
+const routes = require('./routes/index.route')
+app.use('/api', routes)
 
 // Catch all other routes and return the index file
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/tesseract-server/index.html'));
-});
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../dist/tesseract-server/index.html')))
 
-/**
- * Get port from environment and store in Express.
- */
-const port = process.env.PORT || '4000';
-app.set('port', port);
+// Get port from environment and store in Express.
+const port = process.env.PORT || '4000'
+app.set('port', port)
 
-/**
- * Create HTTP server.
- */
-const server = http.createServer(app);
+// Create HTTP server.
+const server = http.createServer(app)
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-server.listen(port, () => console.log(`API running on localhost:${port}`));
+// Listen on provided port, on all network interfaces.
+server.listen(port, () => console.log(`API running on localhost:${port}`))
