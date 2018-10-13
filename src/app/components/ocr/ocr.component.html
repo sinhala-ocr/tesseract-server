@@ -1,1 +1,19 @@
-<app-ocr-task-list></app-ocr-task-list>
+<div id="ocr-task-list">
+  <input type="file" #file style="display: none" (change)="onFilesAdded()" multiple />
+  <button id="ocr-task-list-add-file-button" [disabled]="uploading || uploadSuccessful" mat-raised-button color="primary" class="add-files-btn" (click)="addFiles()">
+    Add Files
+  </button>
+  <div *ngFor="let task of files; let i = index" class="ocr-task-list-item">
+    <div class="ocr-task-list-item-details">
+      <p>{{task.name}}</p>
+      <mat-progress-bar *ngIf="progress" mode="determinate" [value]="progress[task.name].progress | async"></mat-progress-bar>
+    </div>
+    <button mat-icon-button class="ocr-task-list-item-close-button">
+      <mat-icon aria-label="Example icon-button with a heart icon">cancel</mat-icon>
+    </button>
+  </div>
+</div>
+<div id="ocr-component-options">
+  <button mat-raised-button color="primary" [disabled]="uploading" (click)="closeDialog()">Start</button>
+  <button mat-raised-button color="warn" [disabled]="!uploading">Cancel</button>
+</div>

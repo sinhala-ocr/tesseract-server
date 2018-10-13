@@ -1,1 +1,75 @@
 @import "content-panel";
+@import "variables";
+
+:host{
+  #ocr-task-list{
+    display: inline-flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    //width: 1000px;
+
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+
+    border: $border-width solid $border-color;
+
+    #ocr-task-list-add-file-button{
+      display: flex;
+      flex-shrink: 0;
+
+      margin: 0.4rem 0.8rem;
+      padding: 0.4rem;
+
+      justify-content: center;
+    }
+
+    .ocr-task-list-item{
+      display: flex;
+      flex-direction: row;
+      flex-grow: 0;
+      flex-shrink: 0;
+
+      margin: 0.4rem 0.8rem;
+      padding: 0.4rem;
+
+      background-color: #ECEFF1;
+
+      .ocr-task-list-item-details{
+        display: inline-flex;
+        flex-direction: column;
+        flex-grow: 1;
+
+        h3{
+          margin: 0 0 0.4rem;
+        }
+      }
+
+      .ocr-task-list-item-close-button{
+        display: inline-flex;
+        flex-direction: row;
+        flex-grow: 0;
+
+        justify-content: center;
+      }
+    }
+  }
+
+  #ocr-component-options{
+    display: inline-flex;
+    flex-direction: column;
+    flex-basis: 16rem;
+    flex-grow: 0;
+
+    padding: 0.4rem;
+
+    border: $border-width solid $border-color;
+
+    button{
+      margin-bottom: 0.4rem;
+    }
+  }
+}

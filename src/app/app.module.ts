@@ -11,8 +11,15 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatListModule} from '@angular/material/list';
 
 import {AppRouting} from './app.routing';
+
+import {OcrService} from './services/ocr.service';
+import {DiffService} from './services/diff.service';
+import {ImageService} from './services/image.service';
+import {ConfusionMatrixService} from './services/confusion-matrix.service';
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -30,9 +37,6 @@ import {SignUpComponent} from './components/sign-up/sign-up.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import {OcrTaskListComponent} from './components/ocr-task-list/ocr-task-list.component';
-import {OcrTaskListItemComponent} from './components/ocr-task-list-item/ocr-task-list-item.component';
-
 
 @NgModule({
   declarations: [
@@ -49,9 +53,7 @@ import {OcrTaskListItemComponent} from './components/ocr-task-list-item/ocr-task
     ProfileComponent,
     SignInComponent,
     SignUpComponent,
-    DashboardComponent,
-    OcrTaskListComponent,
-    OcrTaskListItemComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -68,10 +70,17 @@ import {OcrTaskListItemComponent} from './components/ocr-task-list-item/ocr-task
     MatCheckboxModule,
     MatIconModule,
     MatProgressBarModule,
+    MatDialogModule,
+    MatListModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
-  providers: [],
+  providers: [
+    OcrService,
+    DiffService,
+    ImageService,
+    ConfusionMatrixService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
