@@ -2,12 +2,12 @@ const express = require('express')
 const axios = require('axios')
 
 const commonRoutes = require('./common.route');
-const dictionaryRoutes = require('./dictionary.route');
+const grammarRoutes = require('./grammar.route');
 
 const router     = express.Router()
 
 router.use('/common', commonRoutes);
-router.use('/dictionary', dictionaryRoutes);
+router.use('/grammar', grammarRoutes);
 
 /* GET api listing. */
 router.get('/', (req, res) => {

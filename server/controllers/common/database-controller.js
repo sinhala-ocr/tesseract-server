@@ -1,21 +1,22 @@
 module.exports = {
   // Get database connection
   getConnection(){
-    var mysql  = require('mysql');
-    var config = require('config');
+    const mysql  = require('mysql');
+    const config = require('config');
   
-    var dbConfig = config.get('server.database');
-    var con = mysql.createConnection(dbConfig);
+    const dbConfig = config.get('server.database');
+    const con = mysql.createConnection(dbConfig);
   
     return con;
   },
 
+  // Execute a sql query and return result
   executeQuery(query, callback){
-    var mysql  = require('mysql');
-    var config = require('config');
+    const mysql  = require('mysql');
+    const config = require('config');
   
-    var dbConfig = config.get('server.database');
-    var con = mysql.createConnection(dbConfig);
+    const dbConfig = config.get('server.database');
+    const con = mysql.createConnection(dbConfig);
 
     con.connect(function(err){
       if (err) throw err;
