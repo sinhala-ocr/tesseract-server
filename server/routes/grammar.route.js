@@ -33,6 +33,20 @@ router.post('/mandatory-check', (req, res) => {
   })
 });
 
+// Dictionary checkings
+router.post('/dictionary-check', (req, res) => {
+  const dictionaryChecker = require('../controllers/grammar/checkers/dictionary-checker');
+  const textUtils = require('../controllers/grammar/utils/text-utils');
+
+  var text = req.body.text;
+  var doc = textUtils.generateDocumentObject(text);
+
+
+  dictionaryChecker.check(doc, function (err, result){
+    res.send(result);
+  })
+});
+
 // Test
 router.get('/test', (req, res) => {
   const controller = require('../controllers/grammar/utils/text-utils');

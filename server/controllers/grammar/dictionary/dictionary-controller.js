@@ -5,7 +5,10 @@ module.exports = {
 
     database.executeQuery("SELECT word FROM dictionary", function(err, result){
       if (err) throw err;
-      callback(false, result);
+      var res = result.map(function(x){
+        return x.word;
+      })
+      callback(false, res);
     });
 	},
 
