@@ -7,6 +7,8 @@ import {Component, OnInit} from '@angular/core';
 })
 export class OcrTaskListComponent implements OnInit {
 
+  tasks: any = [];
+
   constructor() {
   }
 

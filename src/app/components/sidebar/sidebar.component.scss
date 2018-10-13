@@ -7,10 +7,13 @@
   flex-basis: 16rem;
   flex-grow: 0;
 
+  padding-top: $header-height + 0.5rem;
+  padding-bottom: $footer-height;
+
   border: 0 solid $border-color;
   border-right-width: $border-width;
 
   button {
-    margin: 0.4rem 0.8rem;
+    margin: 0.5rem 1rem;
   }
 }

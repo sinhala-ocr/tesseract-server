@@ -1,19 +1,26 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const axios = require('axios')
 
-// >>>>>>>>>>>>>>>>>> SERVICES IMPORT
-// import * as s from '../services/index';
-// s.OcrServices.ocrDocker('sss', 'yyyy')
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+const commonRoutes = require('./common.route');
+const dictionaryRoutes = require('./dictionary.route');
 
-// declare axios for making http requests
-const axios = require('axios');
-const API = 'https://jsonplaceholder.typicode.com';
+const router     = express.Router()
 
+router.use('/common', commonRoutes);
+router.use('/dictionary', dictionaryRoutes);
+
+
+
+
+
+
+
+
+// TODO : Move the routes
 /* GET api listing. */
 router.get('/', (req, res) => {
-  res.send('api works');
-});
+  res.send('api works')
+})
 
 // Get all words in the dictionary
 router.get('/dictionary/get-all-words', (req, res) => {
@@ -46,19 +53,8 @@ router.post('/dictionary/apply-mandatory-rules', (req, res) => {
   })
 });
 
-// Get all posts
-router.get('/posts', (req, res) => {
-  // Get posts from the mock api
-  // This should ideally be replaced with a service that connects to MongoDB
-  axios.get(`${API}/posts`)
-    .then(posts => {
-      res.status(200).json(posts.data);
-    })
-    .catch(error => {
-      res.status(500).send(error)
-    });
-});
 
 
 
-module.exports = router;
+
+module.exports = router
