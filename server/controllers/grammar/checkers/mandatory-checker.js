@@ -1,7 +1,7 @@
 module.exports = {
   // Apply mandatory rules to the text
-  applyMandatoryRules(text, callback){
-    const database = require('../common/database-controller');
+  check(text, callback){
+    const database = require('../../common/database-controller');
     database.executeQuery("SELECT * FROM mandatory_rule", function(err, result){
       if (err) throw err;
 
@@ -14,7 +14,5 @@ module.exports = {
       callback(false, text);
     });
   }
-
-
 
 }
