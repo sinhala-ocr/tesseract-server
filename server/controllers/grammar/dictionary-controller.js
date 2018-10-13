@@ -3,7 +3,7 @@ module.exports = {
 	getAllWords(callback) {
     var database = require('../common/database-controller');
 
-    database.executeQuery("SELECT words FROM dictionary", function(err, result){
+    database.executeQuery("SELECT word FROM dictionary", function(err, result){
       if (err) throw err;
       callback(false, result);
     });
@@ -13,7 +13,7 @@ module.exports = {
   exists(word, callback){
     var database = require('../common/database-controller');
 
-    database.executeQuery(`SELECT COUNT(*) AS count FROM dictionary WHERE words = '${word}'`, function(err, result){
+    database.executeQuery(`SELECT COUNT(*) AS count FROM dictionary WHERE word = '${word}'`, function(err, result){
       if (err) throw err;
       callback(false, result[0].count == 1);
     })
@@ -23,7 +23,7 @@ module.exports = {
   addWord(word, callback){
     var database = require('../common/database-controller');
 
-    database.executeQuery(`INSERT INTO dictionary(words) VALUES('${word}')`, function(err, result){
+    database.executeQuery(`INSERT INTO dictionary(word) VALUES('${word}')`, function(err, result){
       if (err) throw err;
       callback(false, result);
     })

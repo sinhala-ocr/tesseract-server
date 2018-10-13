@@ -34,8 +34,7 @@ router.get('/dictionary/add-word', (req, res) => {
     console.log(result)
     res.send(result);
   })
-})
-
+});
 
 // Apply mandatory rules
 router.post('/dictionary/apply-mandatory-rules', (req, res) => {
@@ -45,7 +44,7 @@ router.post('/dictionary/apply-mandatory-rules', (req, res) => {
   controller.applyMandatoryRules(text, function (err, result){
     res.send(result);
   })
-})
+});
 
 // Get all posts
 router.get('/posts', (req, res) => {
