@@ -3,6 +3,7 @@ const IncomingForm = require('formidable').IncomingForm
 const moment       = require('moment')
 const makeDir      = require('make-dir')
 const cpy          = require('cpy')
+const writeJsonFile = require('write-json-file');
 
 const router = express.Router()
 
@@ -25,7 +26,12 @@ router.post('/process/txt', (req, res) => {
       await cpy([file.path], `storage/library/${dirName}/${file.name}`, {
         rename: basename => `input.txt`
       })
-    })()
+    })();
+
+    // Write log
+    (async () => {
+      await writeJsonFile(`storage/library/${dirName}/${file.name}/log.json`, {foo: true});
+    })();
   })
 
   // On form end
