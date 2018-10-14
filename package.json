@@ -33,6 +33,7 @@
     "@angular/pwa": "^0.8.3",
     "@angular/router": "^6.1.9",
     "@angular/service-worker": "^6.1.9",
+    "@types/socket.io-client": "^1.4.32",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "config": "^2.0.1",
@@ -53,6 +54,8 @@
     "mysql": "^2.16.0",
     "rxjs": "~6.3.3",
     "shelljs": "^0.8.2",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1",
     "write-json-file": "^3.0.2",
     "zone.js": "~0.8.26"
   },

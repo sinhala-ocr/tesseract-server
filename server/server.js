@@ -3,6 +3,7 @@ const express    = require('express')
 const path       = require('path')
 const http       = require('http')
 const bodyParser = require('body-parser')
+const io         = require('socket.io')(http)
 const cors       = require('cors')
 
 const app = express()
@@ -15,7 +16,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, '../dist/tesseract-server')))
 
 const corsOptions = {
-  origin              : '*',
+  origin: '*',
   optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions))
@@ -33,6 +34,9 @@ app.set('port', port)
 
 // Create HTTP server.
 const server = http.createServer(app)
+
+// Socket.io
+io.on('connection', socket => console.log('a user connected'));
 
 // Listen on provided port, on all network interfaces.
 server.listen(port, () => console.log(`API running on localhost:${port}`))

@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import {Injectable}                                           from '@angular/core';
+import {HttpClient, HttpEventType, HttpRequest, HttpResponse} from '@angular/common/http';
+import {Observable, Subject}                                  from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OcrService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  public upload(files: Set<File>): {[key: string]: Observable<number>} {
+  public upload(files: Set<File>): { [key: string]: Observable<number> } {
     // this will be the our resulting map
     const status = {};
 
@@ -20,7 +21,7 @@ export class OcrService {
 
       // create a http-post request and pass the form
       // tell it to report the upload progress
-      const req = new HttpRequest('POST', 'http://localhost:4000/api/ocr/upload', formData, {
+      const req = new HttpRequest('POST', 'http://localhost:4000/api/ocr/process/txt', formData, {
         reportProgress: true
       });
 
@@ -41,6 +42,8 @@ export class OcrService {
           // Close the progress-stream if we get an answer form the API
           // The upload is complete
           progress.complete();
+        } else {
+          console.log(event);
         }
       });
 
