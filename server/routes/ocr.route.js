@@ -6,6 +6,7 @@ const makeDir       = require('make-dir');
 const cpy           = require('cpy');
 const writeJsonFile = require('write-json-file');
 const imageService  = require('../services/ocr/image-service');
+const ocrService  = require('../services/ocr/ocr-service');
 
 const router = express.Router();
 
@@ -42,6 +43,11 @@ router.post('/process/txt', (req, res) => {
     // Generate image
     (async () => {
       await imageService.text2ImageDocker(directoryAbsolutePath + '/input.txt', directoryAbsolutePath + '/out');
+    })();
+
+    // OCR
+    (async () => {
+      await ocrService.ocrDocker(directoryAbsolutePath + '/out.tif', directoryAbsolutePath + '/output');
     })();
 
     // Set log values
