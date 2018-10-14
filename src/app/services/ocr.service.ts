@@ -43,7 +43,7 @@ export class OcrService {
           // The upload is complete
           progress.complete();
         } else {
-          console.log(event);
+          // console.log(event);
         }
       });
 

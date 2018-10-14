@@ -1,9 +1,11 @@
 const express       = require('express');
 const IncomingForm  = require('formidable').IncomingForm;
 const moment        = require('moment');
+const path          = require('path');
 const makeDir       = require('make-dir');
 const cpy           = require('cpy');
 const writeJsonFile = require('write-json-file');
+const imageService  = require('../services/ocr/image-service');
 
 const router = express.Router();
 
@@ -13,7 +15,8 @@ router.post('/process/txt', (req, res) => {
 
   let log = {
     original_file_name: '',
-    directory_path: ''
+    directory_absolute_path: '',
+    directory_relative_path: ''
   };
 
   // Make directory
@@ -26,22 +29,29 @@ router.post('/process/txt', (req, res) => {
 
   // On file received
   form.on('file', (field, file) => {
-    let directoryPath = `storage/library/${dirName}/${file.name}`;
+    let directoryRelativePath = `storage/library/${dirName}/${file.name}`;
+    let directoryAbsolutePath = path.join(__dirname, '../../' + directoryRelativePath);
 
     // Copy file to the library
     (async () => {
-      await cpy([file.path], directoryPath, {
+      await cpy([file.path], directoryRelativePath, {
         rename: basename => `input.txt`
       });
     })();
 
+    // Generate image
+    (async () => {
+      await imageService.text2ImageDocker(directoryAbsolutePath + '/input.txt', directoryAbsolutePath + '/out');
+    })();
+
     // Set log values
-    log.original_file_name = file.name;
-    log.directory_path = directoryPath;
+    log.original_file_name      = file.name;
+    log.directory_absolute_path = directoryAbsolutePath;
+    log.directory_relative_path = directoryRelativePath;
 
     // Write log
     (async () => {
-      await writeJsonFile(`storage/library/${dirName}/${file.name}/log.json`, {foo: true});
+      await writeJsonFile(`storage/library/${dirName}/${file.name}/log.json`, log);
     })();
   });
 
