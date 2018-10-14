@@ -60,6 +60,14 @@ router.post('/exblock-check', (req, res) => {
 });
 
 // Test
-router.get('/test', (req, res) => {
+router.post('/test', (req, res) => {
+  const legitimacyChecker = require('../controllers/grammar/checkers/legitimacy-checker');
+  const textUtils = require('../controllers/grammar/utils/text-utils');
+  var text = req.body.text;
 
+  var doc = textUtils.generateDocumentObject(text);
+
+  legitimacyChecker.check(doc, function (err, result){
+    res.send(result);
+  })
 });

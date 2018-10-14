@@ -2,6 +2,8 @@ module.exports = {
   // Check in extended blocks
   check(doc, callback){
     const database = require('../../common/database-controller');
+    const docUtils = require('../utils/doc-utils');
+
     database.executeQuery("SELECT * FROM exblock", function(err, result){
       if (err) throw err;
 
@@ -14,7 +16,7 @@ module.exports = {
       doc.forEach(function(word){
         for (let i = 0; i < word.letters.length; ++i){
           if (exblock.indexOf(word.letters[i].value) == -1){
-            word.letters[i]['exblock-error'] = true;
+            docUtils.setError(word.letters[i], "NOT_IN_EXBLOCK");
           }
         }
       })
