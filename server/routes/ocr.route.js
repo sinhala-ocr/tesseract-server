@@ -5,8 +5,9 @@ const path          = require('path');
 const makeDir       = require('make-dir');
 const cpy           = require('cpy');
 const writeJsonFile = require('write-json-file');
-const imageService  = require('../services/ocr/image-service');
-const ocrService  = require('../services/ocr/ocr-service');
+const axios         = require('axios');
+const imageService  = require('../controllers/ocr/image.controller');
+const ocrService    = require('../controllers/ocr/ocr.controller');
 
 const router = express.Router();
 
@@ -40,15 +41,25 @@ router.post('/process/txt', (req, res) => {
       });
     })();
 
-    // Generate image
+    // Process
     (async () => {
-      await imageService.text2ImageDocker(directoryAbsolutePath + '/input.txt', directoryAbsolutePath + '/out');
+      await axios.post('http://localhost:8080/process', {
+        inputPath: directoryAbsolutePath,
+        outputPath: directoryAbsolutePath
+      })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
     })();
 
+    // Generate image
+    // (async () => {
+    //   await imageService.text2Image(directoryAbsolutePath + '/input.txt', directoryAbsolutePath + '/out');
+    // })();
+
     // OCR
-    (async () => {
-      await ocrService.ocrDocker(directoryAbsolutePath + '/out.tif', directoryAbsolutePath + '/output');
-    })();
+    // (async () => {
+    //   await ocrService.ocr(directoryAbsolutePath + '/out.tif', directoryAbsolutePath + '/output');
+    // })();
 
     // Set log values
     log.original_file_name      = file.name;
