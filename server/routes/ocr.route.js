@@ -1,22 +1,83 @@
-const express = require('express');
-const IncomingForm = require('formidable').IncomingForm;
+const express       = require('express');
+const IncomingForm  = require('formidable').IncomingForm;
+const moment        = require('moment');
+const path          = require('path');
+const makeDir       = require('make-dir');
+const cpy           = require('cpy');
+const writeJsonFile = require('write-json-file');
+const axios         = require('axios');
+const imageService  = require('../controllers/ocr/image.controller');
+const ocrService    = require('../controllers/ocr/ocr.controller');
 
-const router     = express.Router()
+const router = express.Router();
 
-router.post('/upload', (req, res) => {
-  var form = new IncomingForm();
+router.post('/process/txt', (req, res) => {
+  let now     = moment();
+  let dirName = now.format('YYYY_MM_DD_HH_mm_ss');
 
-  form.on('file', (field, file) => {
-    // Do something with the file
-    // e.g. save it to the database
-    // you can access it using file.path
+  let log = {
+    original_file_name: '',
+    directory_absolute_path: '',
+    directory_relative_path: ''
+  };
 
-    console.log(file);
-    console.log(file.path);
+  // Make directory
+  makeDir(`storage/library/${dirName}`).then(path => {
+    console.log(path);
   });
+
+  // Create a form
+  let form = new IncomingForm();
+
+  // On file received
+  form.on('file', (field, file) => {
+    let directoryRelativePath = `storage/library/${dirName}/${file.name}`;
+    let directoryAbsolutePath = path.join(__dirname, '../../' + directoryRelativePath);
+
+    // Copy file to the library
+    (async () => {
+      await cpy([file.path], directoryRelativePath, {
+        rename: basename => `input.txt`
+      });
+    })();
+
+    // Process
+    (async () => {
+      await axios.post('http://localhost:8080/process', {
+        inputPath: directoryAbsolutePath,
+        outputPath: directoryAbsolutePath
+      })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    })();
+
+    // Generate image
+    // (async () => {
+    //   await imageService.text2Image(directoryAbsolutePath + '/input.txt', directoryAbsolutePath + '/out');
+    // })();
+
+    // OCR
+    // (async () => {
+    //   await ocrService.ocr(directoryAbsolutePath + '/out.tif', directoryAbsolutePath + '/output');
+    // })();
+
+    // Set log values
+    log.original_file_name      = file.name;
+    log.directory_absolute_path = directoryAbsolutePath;
+    log.directory_relative_path = directoryRelativePath;
+
+    // Write log
+    (async () => {
+      await writeJsonFile(`storage/library/${dirName}/${file.name}/log.json`, log);
+    })();
+  });
+
+  // On form end
   form.on('end', () => {
     res.json();
   });
+
+  // Parse the request
   form.parse(req);
 });
 
