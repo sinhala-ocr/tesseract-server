@@ -6,7 +6,6 @@ module.exports = {
       if (err) throw err;
 
       // Apply changes by rules
-      var rules = {};
       result.forEach(function(rule){
         text = text.replace(rule['find'], rule['replace'])
       });

@@ -20,6 +20,8 @@ import {OcrService} from './services/ocr.service';
 import {DiffService} from './services/diff.service';
 import {ImageService} from './services/image.service';
 import {ConfusionMatrixService} from './services/confusion-matrix.service';
+import {GrammarService} from './services/grammar.service';
+import {DocService} from './services/doc.service';
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -37,6 +39,8 @@ import {SignUpComponent} from './components/sign-up/sign-up.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
+
+
 
 @NgModule({
   declarations: [
@@ -79,7 +83,9 @@ import {environment} from '../environments/environment';
     OcrService,
     DiffService,
     ImageService,
-    ConfusionMatrixService
+    ConfusionMatrixService,
+    GrammarService,
+    DocService
   ],
   bootstrap: [AppComponent]
 })

@@ -59,6 +59,17 @@ router.post('/exblock-check', (req, res) => {
   })
 });
 
+
+// Check all
+router.post('/', (req, res) => {
+  const grammarCheck = require('../controllers/grammar/grammar');
+  var text = req.body.text;
+  grammarCheck.check(text, function(err, result){
+    res.send(result);
+  })
+});
+
+
 // Test
 router.post('/test', (req, res) => {
   const legitimacyChecker = require('../controllers/grammar/checkers/legitimacy-checker');

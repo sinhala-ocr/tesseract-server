@@ -16,7 +16,7 @@ module.exports = {
       doc.forEach(function(word){
         for (let i = 0; i < word.letters.length; ++i){
           if (exblock.indexOf(word.letters[i].value) == -1){
-            docUtils.setError(word.letters[i], "NOT_IN_EXBLOCK");
+            docUtils.setError(word.letters[i], "NOT_IN_EXBLOCK_ERROR");
           }
         }
       })

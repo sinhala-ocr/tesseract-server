@@ -45,3 +45,25 @@ mat-checkbox {
 mat-form-field {
   width: 100%;
 }
+
+
+// Output text stiles
+:host ::ng-deep .modifier-in-the-begin-error { 
+  background-color: yellow;
+  color: red;
+}
+
+:host ::ng-deep .vowel-in-the-middle-error { 
+  background-color: yellow;
+  color: red;
+}
+
+:host ::ng-deep .not-in-dictionary-error { 
+  background-color: yellow;
+  text-decoration: underline;
+}
+
+:host ::ng-deep .not-in-exblock-error {
+  background-color: yellow;
+  color: green;
+}
