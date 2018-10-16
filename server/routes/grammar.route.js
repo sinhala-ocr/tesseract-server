@@ -36,25 +36,25 @@ router.post('/mandatory-check', (req, res) => {
 // Dictionary checkings
 router.post('/dictionary-check', (req, res) => {
   const dictionaryChecker = require('../controllers/grammar/checkers/dictionary-checker');
-  const textUtils = require('../controllers/grammar/utils/text-utils');
+  const docUtils = require('../controllers/grammar/utils/doc-utils');
 
   var text = req.body.text;
-  var doc = textUtils.generateDocumentObject(text);
+  var doc = docUtils.generateDocumentObject(text);
 
   dictionaryChecker.check(doc, function (err, result){
     res.send(result);
   })
 });
 
-// Exblock checkings
-router.post('/exblock-check', (req, res) => {
-  const exblockChecker = require('../controllers/grammar/checkers/exblock-checker');
-  const textUtils = require('../controllers/grammar/utils/text-utils');
+// Character Legitimacy checkings
+router.post('/character-legitimacy-check', (req, res) => {
+  const characterLegitimacyChecker = require('../controllers/grammar/checkers/character-legitimacy-checker');
+  const docUtils = require('../controllers/grammar/utils/doc-utils');
   var text = req.body.text;
 
-  var doc = textUtils.generateDocumentObject(text);
+  var doc = docUtils.generateDocumentObject(text);
 
-  exblockChecker.check(doc, function (err, result){
+  characterLegitimacyChecker.check(doc, function (err, result){
     res.send(result);
   })
 });
@@ -65,6 +65,9 @@ router.post('/', (req, res) => {
   const grammarCheck = require('../controllers/grammar/grammar');
   var text = req.body.text;
   grammarCheck.check(text, function(err, result){
+    if (err){
+      res.send({});
+    }
     res.send(result);
   })
 });
@@ -72,13 +75,13 @@ router.post('/', (req, res) => {
 
 // Test
 router.post('/test', (req, res) => {
-  const legitimacyChecker = require('../controllers/grammar/checkers/legitimacy-checker');
-  const textUtils = require('../controllers/grammar/utils/text-utils');
+  const grammarLegitimacyChecker = require('../controllers/grammar/checkers/grammar-legitimacy-checker');
+  const docUtils = require('../controllers/grammar/utils/doc-utils');
   var text = req.body.text;
 
-  var doc = textUtils.generateDocumentObject(text);
+  var doc = docUtils.generateDocumentObject(text);
 
-  legitimacyChecker.check(doc, function (err, result){
+  grammarLegitimacyChecker.check(doc, function (err, result){
     res.send(result);
   })
 });

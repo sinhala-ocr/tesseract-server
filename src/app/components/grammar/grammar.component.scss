@@ -61,9 +61,10 @@ mat-form-field {
 :host ::ng-deep .not-in-dictionary-error { 
   background-color: yellow;
   text-decoration: underline;
+  font-weight: bold;
 }
 
 :host ::ng-deep .not-in-exblock-error {
   background-color: yellow;
-  color: green;
+  color: blue;
 }

@@ -1,22 +1,28 @@
 module.exports = {
   // Start grammar check
   check(text, callback) {
-    const textUtils         = require('./utils/text-utils');
+    const docUtils = require('./utils/doc-utils');
     
-    const mandatoryChecker  = require('./checkers/mandatory-checker');
-    const dictionaryChecker = require('./checkers/dictionary-checker');
-    const exblockChecker    = require('./checkers/exblock-checker');
-    const legitimacyChecker = require('./checkers/legitimacy-checker');
+    const mandatoryChecker            = require('./checkers/mandatory-checker');
+    const dictionaryChecker           = require('./checkers/dictionary-checker');
+    const characterLegitimacyChecker  = require('./checkers/character-legitimacy-checker');
+    const grammarLegitimacyChecker    = require('./checkers/grammar-legitimacy-checker');
   
+    // If the text is empty
+    if (text == ''){
+      callback("Text is empty", null);
+      return;
+    }
+
     // Mandatory check
     mandatoryChecker.check(text, function (err, result){
-      var doc = textUtils.generateDocumentObject(result);
+      var doc = docUtils.generateDocumentObject(result);
       // Dictionary check
       dictionaryChecker.check(doc, function (err, result){
         // Exblock check
-        exblockChecker.check(doc, function (err, result){
+        characterLegitimacyChecker.check(doc, function (err, result){
           // Legitimacy check
-          legitimacyChecker.check(doc, function (err, result){
+          grammarLegitimacyChecker.check(doc, function (err, result){
             callback(null, result);
           })
         })
