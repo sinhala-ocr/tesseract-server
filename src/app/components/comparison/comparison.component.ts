@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-comparison',
-  templateUrl: './comparison.component.html',
+  templateUrl: './comparison.component.pug',
   styleUrls: ['./comparison.component.scss']
 })
 export class ComparisonComponent implements OnInit {
