@@ -4,5 +4,16 @@
 :host{
   mat-accordion {
     width: 100%;
+
+    mat-form-field{
+      width: 100%;
+    }
+
+    button {
+      width: 8rem;
+
+      margin-left: 0.4rem;
+      margin-right: 0.4rem;
+    }
   }
 }

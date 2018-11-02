@@ -41,3 +41,4 @@ Thumbs.db
 # Project
 storage/library/*
 storage/temp/*
+storage/trained_data/*
