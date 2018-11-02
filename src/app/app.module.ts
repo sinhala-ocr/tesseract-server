@@ -13,8 +13,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import {AppRouting} from './app.routing';
+import {environment} from '../environments/environment';
 
 import {OcrService} from './services/ocr.service';
 import {DiffService} from './services/diff.service';
@@ -38,8 +40,7 @@ import {SignInComponent} from './components/sign-in/sign-in.component';
 import {SignUpComponent} from './components/sign-up/sign-up.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
-import {environment} from '../environments/environment';
-
+import {TessconfigComponent} from './components/tessconfig/tessconfig.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import {environment} from '../environments/environment';
     ProfileComponent,
     SignInComponent,
     SignUpComponent,
-    DashboardComponent
+    DashboardComponent,
+    TessconfigComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +78,7 @@ import {environment} from '../environments/environment';
     MatProgressBarModule,
     MatDialogModule,
     MatListModule,
+    MatExpansionModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],

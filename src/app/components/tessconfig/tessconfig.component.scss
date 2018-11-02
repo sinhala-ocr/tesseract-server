@@ -1,0 +1,8 @@
+@import "content-panel";
+@import "variables";
+
+:host{
+  mat-accordion {
+    width: 100%;
+  }
+}

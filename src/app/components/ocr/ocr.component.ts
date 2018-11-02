@@ -12,8 +12,8 @@ export class OcrComponent implements OnInit {
 
   @ViewChild('file') file;
 
-  public tasks: Array<OcrTask> = [];
   public files: Set<File> = new Set();
+  public tasks: Array<OcrTask> = [];
 
   public progress: any;
   public uploading = false;

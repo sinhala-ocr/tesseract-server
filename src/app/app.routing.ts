@@ -11,12 +11,14 @@ import {OcrComponent} from './components/ocr/ocr.component';
 import {ConfusionMatrixComponent} from './components/confusion-matrix/confusion-matrix.component';
 import {ComparisonComponent} from './components/comparison/comparison.component';
 import {GrammarComponent} from './components/grammar/grammar.component';
+import {TessconfigComponent} from './components/tessconfig/tessconfig.component';
 
 
 const routes: Routes = [
   {path: 'signin', component: SignInComponent},
   {path: 'signup', component: SignUpComponent},
 
+  {path: 'tessconfig', component: TessconfigComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'preferences', component: PreferencesComponent},
 
