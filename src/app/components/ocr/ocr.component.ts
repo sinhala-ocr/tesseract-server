@@ -5,7 +5,7 @@ import {forkJoin} from 'rxjs';
 
 @Component({
   selector: 'app-ocr',
-  templateUrl: './ocr.component.html',
+  templateUrl: './ocr.component.pug',
   styleUrls: ['./ocr.component.scss']
 })
 export class OcrComponent implements OnInit {

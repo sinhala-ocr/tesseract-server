@@ -1,0 +1,18 @@
+div#ocr-task-list
+  input(type="file", '#file', style='display: none', (change)='onFilesAdded()', multiple)
+  button#ocr-task-list-add-file-button('[disabled]'='uploading || uploadSuccessful', mat-raised-button color='primary', class='add-files-btn', '(click)'='addFiles()') Add files
+  div.ocr-list-item('*ngFor'='let file of files; let i = index')
+    div.ocr-task-list-item-details
+      p {{file.name}}
+      mat-progress-bar('*ngIf'='progress', mode='determinate', color='primary', '[value]'='progress[file.name].progress | async')
+    button.ocr-task-list-item-close-button(mat-icon-button)
+      mat-icon cancel
+  div.ocr-list-item('*ngFor'='let task of tasks; let i = index')
+    div.ocr-task-list-item-details
+      p {{task.name}}
+      mat-progress-bar('*ngIf'='progress', mode='determinate', color='primary', '[value]'='progress[task.name].progress | async')
+    button.ocr-task-list-item-close-button(mat-icon-button)
+      mat-icon cancel
+div#ocr-component-options
+  button(mat-raised-button, color='primary', [disabled]='uploading', '(click)'='closeDialog()') Start
+  button(mat-raised-button, color='ward', [disabled]='!uploading') Cancel
