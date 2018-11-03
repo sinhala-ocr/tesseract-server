@@ -43,9 +43,13 @@ router.post('/process/txt', (req, res) => {
 
     // Process
     (async () => {
-      await axios.post('http://localhost:8080/process', {
-        inputPath: directoryAbsolutePath,
-        outputPath: directoryAbsolutePath
+      await axios({
+        method: 'POST',
+        url: 'http://localhost:8080/process',
+        params: {
+          inputPath: directoryAbsolutePath,
+          outputPath: directoryAbsolutePath
+        }
       })
         .then(res => console.log(res))
         .catch(err => console.log(err));
