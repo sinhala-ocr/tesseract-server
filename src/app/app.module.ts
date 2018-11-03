@@ -19,9 +19,6 @@ import {AppRouting} from './app.routing';
 import {environment} from '../environments/environment';
 
 import {OcrService} from './services/ocr.service';
-import {DiffService} from './services/diff.service';
-import {ImageService} from './services/image.service';
-import {ConfusionMatrixService} from './services/confusion-matrix.service';
 import {GrammarService} from './services/grammar.service';
 import {DocService} from './services/doc.service';
 
@@ -84,9 +81,6 @@ import {TessconfigComponent} from './components/tessconfig/tessconfig.component'
   ],
   providers: [
     OcrService,
-    DiffService,
-    ImageService,
-    ConfusionMatrixService,
     GrammarService,
     DocService
   ],

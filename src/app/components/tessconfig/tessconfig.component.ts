@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {TessdataService} from '../../services/tessdata.service';
 
 @Component({
   selector: 'app-tessconfig',
@@ -7,11 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TessconfigComponent implements OnInit {
 
-  public trainedData = [];
+  public trainedData;
 
-  constructor() { }
+  constructor(private tessdataService: TessdataService) {
+  }
 
   ngOnInit() {
+    this.tessdataService.getTrainedData().then(res => {
+      this.trainedData = res;
+    }).catch(err => {
+      return console.log(err);
+    });
+  }
+
+  onClickDefaultButton(id: string) {
+    this.tessdataService.setDefaultTrainedData(id);
+  }
+
+  onClickSaveButton(id: string, newName: string, newDescription: string) {
+    this.tessdataService.setTrainedDataProperties(id, newName, newDescription);
+  }
+
+  onClickDeleteButton(id: string, ) {
+    this.tessdataService.deleteTrainedData(id);
   }
 
 }

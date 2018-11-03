@@ -1,12 +1,12 @@
 mat-accordion
-  mat-expansion-panel
+  mat-expansion-panel('*ngFor'='let datum of trainedData; let i = index')
     mat-expansion-panel-header
-      mat-panel-title Trained data name
-      mat-panel-description 2013-03-21 03:47:05
+      mat-panel-title {{datum.id}}
+      mat-panel-description {{datum.timestamp}}
     mat-form-field
-      input(matInput, placeholder='New trained-data name')
+      input(matInput, placeholder='New trained-data name', value='{{datum.name}}')
     mat-form-field
-      input(matInput, placeholder='New trained-data description')
-    button(mat-raised-button, color='primary') Save
-    button(mat-raised-button, color='warn') Delete
-    button(mat-raised-button, color='accent') Set as default
+      input(matInput, placeholder='New trained-data description', value='{{datum.description}}')
+    button(mat-raised-button, color='primary', '(click)'='onClickSaveButton(datum.id, datum.name, datum.description)') Save
+    button(mat-raised-button, color='warn', '(click)'='onClickDeleteButton(datum.id)') Delete
+    button(mat-raised-button, color='accent', '(click)'='onClickDefaultButton(datum.id)') Set as default
