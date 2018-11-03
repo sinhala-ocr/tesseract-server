@@ -7,7 +7,7 @@ module.exports = {
 
       // Apply changes by rules
       result.forEach(function(rule){
-        text = text.replace(rule['find'], rule['replace'])
+        text = text.replace(rule['key'], rule['value'])
       });
 
       callback(false, text);
