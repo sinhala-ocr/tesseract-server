@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpEventType, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
+import * as _moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ export class OcrService {
   public upload(files: Set<File>): { [key: string]: Observable<number> } {
     // this will be the our resulting map
     const status = {};
+
+    // Timestamp
+    const now       = _moment();
+    const timestamp = now.format('YYYYMMDDHHmmss');
 
     files.forEach(file => {
       // create a new multipart-form for every file

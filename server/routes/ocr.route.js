@@ -6,20 +6,10 @@ const makeDir       = require('make-dir');
 const cpy           = require('cpy');
 const writeJsonFile = require('write-json-file');
 const axios         = require('axios');
-const imageService  = require('../controllers/ocr/image.controller');
-const ocrService    = require('../controllers/ocr/ocr.controller');
-
 const router = express.Router();
 
 router.post('/process/txt', (req, res) => {
-  let now     = moment();
-  let dirName = now.format('YYYY_MM_DD_HH_mm_ss');
-
-  let log = {
-    original_file_name: '',
-    directory_absolute_path: '',
-    directory_relative_path: ''
-  };
+  let dirName = 'xxxx';
 
   // Make directory
   makeDir(`storage/library/${dirName}`).then(path => {
@@ -48,31 +38,15 @@ router.post('/process/txt', (req, res) => {
         url: 'http://localhost:8080/process',
         params: {
           inputPath: directoryAbsolutePath,
-          outputPath: directoryAbsolutePath
+          outputPath: directoryAbsolutePath,
+
+          originalFileName: file.name,
+          dirAbsolutePath: directoryAbsolutePath,
+          dirRelativePath: directoryRelativePath
         }
       })
         .then(res => console.log(res))
         .catch(err => console.log(err));
-    })();
-
-    // Generate image
-    // (async () => {
-    //   await imageService.text2Image(directoryAbsolutePath + '/input.txt', directoryAbsolutePath + '/out');
-    // })();
-
-    // OCR
-    // (async () => {
-    //   await ocrService.ocr(directoryAbsolutePath + '/out.tif', directoryAbsolutePath + '/output');
-    // })();
-
-    // Set log values
-    log.original_file_name      = file.name;
-    log.directory_absolute_path = directoryAbsolutePath;
-    log.directory_relative_path = directoryRelativePath;
-
-    // Write log
-    (async () => {
-      await writeJsonFile(`storage/library/${dirName}/${file.name}/log.json`, log);
     })();
   });
 

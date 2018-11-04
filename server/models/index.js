@@ -1,1 +1,1 @@
-export {default as ConfusionMatrix} from './confusion-matrix';
+export {default as SampleModel} from './sample-model';
