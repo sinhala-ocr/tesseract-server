@@ -1,28 +1,76 @@
 <mat-card class="input-mat-card">
-    <!-- Text area -->
+
     <mat-form-field>
-            <textarea class="input-textarea" matInput placeholder="Input text" [(ngModel)]="inputText"></textarea>
+        <textarea class="input-textarea" matInput placeholder="Input text" [(ngModel)]="inputText"></textarea>
     </mat-form-field>
-    
-    <!-- Button area -->
-    <div class="button-panel">
-        <mat-checkbox class="example-margin" [(ngModel)]="mandatory_rules">Mandatory Rules</mat-checkbox>
-        <mat-checkbox class="example-margin" [(ngModel)]="ambibuity_check">Ambiguity Check</mat-checkbox>
-        <mat-checkbox class="example-margin" [(ngModel)]="legitimacy_check">Legitimacy Check</mat-checkbox>
-        <mat-checkbox class="example-margin" [(ngModel)]="dictionary_check">Dictionary Check</mat-checkbox>
-        <button mat-stroked-button color="primary" (click)="onClickProcessButton()">Process</button>
-    </div>
-
-    <br><br>
-
-    <mat-divider></mat-divider>
 
     <div>
-        <div class="output-textarea" [(innerHtml)]="outputText"></div>
+        <button mat-stroked-button color="primary" (click)="onClickProcessButton()">Process</button>
+    </div> 
+
+    <div class="container">
+        <!-- Original text area -->
+        <div class="left-panel" [(innerHtml)]="inputText"> </div>
+
+        <!-- Editin area -->
+        <div class="right-panel">
+            <span *ngFor="let word of docModel">
+
+                    <!-- Level 1 word -->
+                    <ng-container *ngIf="word.level == 1">
+                            <span>
+                                <ng-container *ngFor="let letter of word.getLetters()">
+                                    <!-- If flagged: show menu -->
+                                    <ng-container *ngIf="letter.flags.length > 0">
+                                        <ng-container *ngIf="letter.isModified; else notModified">
+                                                <span class="flag-letter-deleted" [matMenuTriggerFor]="letterMenu" [matMenuTriggerData]="{data: letter}">{{letter.value}}</span>
+                                                <span class="flag-letter-inserted" [matMenuTriggerFor]="letterMenu" [matMenuTriggerData]="{data: letter}">{{letter.newValue}}</span>
+                                        </ng-container>
+                                        <ng-template #notModified>
+                                                <span [ngClass]="letter.getStyle()" [matMenuTriggerFor]="letterMenu" [matMenuTriggerData]="{data: letter}">{{letter.value}}</span>
+                                        </ng-template>
+                                    </ng-container>
+
+                                    <!-- If not flagged -->
+                                    <span *ngIf="letter.flags.length == 0" [ngClass]="letter.getStyle()">{{letter.value}}</span>
+                                </ng-container>
+                            </span>
+                    </ng-container>
+        
+                    <!-- Level 2 word -->
+                    <ng-container *ngIf="word.level == 2">
+                            <span [ngClass]="word.getStyle()" [matMenuTriggerFor]="wordMenu" [matMenuTriggerData]="{data: word}">
+                                    <span *ngFor="let letter of word.getLetters()" [ngClass]="letter.getStyle()">{{letter.value}}</span>
+                            </span>
+                    </ng-container>
+        
+                    <span>&nbsp;</span>
+                </span>
+        </div>
+
     </div>
 
 
+    <!-- Word dropdown menu -->
+    <mat-menu #wordMenu="matMenu">
+        <ng-template matMenuContent let-data="data">
+            <button mat-menu-item *ngFor="let suggestion of data.suggestions" (click)="onWordSuggestionClick(data,suggestion)">{{suggestion.value}}</button>
+        </ng-template>
+    </mat-menu>
 
+    <!-- Letter dropdown menu -->
+    <mat-menu #letterMenu="matMenu">
+        <ng-template matMenuContent let-data="data">
+            <ng-container *ngIf="data.isModified">
+                <button mat-menu-item (click)="onLetterResetClick(data)">Undo</button>
+            </ng-container>
+
+            <ng-container *ngIf="!data.isModified">
+                <button mat-menu-item (click)="onLetterDeleteClick(data)">Delete</button>
+            </ng-container>
+        </ng-template>
+    </mat-menu>
+ 
 
 </mat-card>
 

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Word } from '../models/word';
+import { Letter } from '../models/letter';
 
 @Injectable({
   providedIn: 'root'
@@ -7,52 +9,54 @@ export class DocService {
 
   constructor() { }
 
-  docToHtml(docText: string){
-    const STYLE_NAME = {
-      'NOT_IN_DICTIONARY_ERROR'     : 'not-in-dictionary-error',
-      'NOT_IN_EXBLOCK_ERROR'        : 'not-in-exblock-error',
-      'MODIFIER_IN_THE_BEGIN_ERROR' : 'modifier-in-the-begin-error',
-      'VOWEL_IN_THE_MIDDLE_ERROR'   : 'vowel-in-the-middle-error'
-    }
-
+  // Convert document text to model
+  docToModel(docText: string){
     var doc: any = JSON.parse(docText);
-    var html = '';
+    var docModel: Word[];
+    docModel = [];
 
     // For each word in doc
     for (var w in doc){
-      if (doc.hasOwnProperty(w)){
-        var letters = doc[w].letters;
-        
-        // Mard dictionary error
-        if (doc[w].hasOwnProperty('errors')){
-          html += '<span class="' + STYLE_NAME[doc[w].errors[0]] + '">';
-        }
-        // For each letter in word
-        for (var l in letters){
-          if (letters.hasOwnProperty(l)){
-            if (letters[l].hasOwnProperty('errors')){
-              // Mark letter errors
-              html += '<span class="' + STYLE_NAME[letters[l].errors[0]] + '">' + letters[l].value + '</span>';
-            } else {
-              html += letters[l].value;
-            }
-          }
-        }
+      var word = this.jsonToWord(doc[w]);
+      docModel.push(word);
+    }
 
-        // Close dictionary error mark
-        if (doc[w].hasOwnProperty('errors')){
-          html += '</span>';
-        }
-        
-        html += ' ';
+    // console.log(docModel);
+    return docModel;
+  }
+
+  // Convert json object to word object
+  private jsonToWord(obj: any){
+    var word = new Word(obj.value);
+    // Set level
+    if (obj.hasOwnProperty('level')){
+      word.level = obj.level;
+    }
+    // Set word flags
+    if (obj.hasOwnProperty('flags')){
+      word.setFlags(obj.flags);
+    }
+    // Set letters
+    var letters = obj.letters;
+    for (var l in letters){
+      var letter = new Letter(letters[l].value);
+      // Set letter flags
+      if (letters[l].hasOwnProperty('flags')){
+        letter.setFlags(letters[l].flags);
+      }
+      word.letters.push(letter);
+    }
+    // Set suggestions
+    if (obj.hasOwnProperty('suggestions')){
+      word.addSuggestion(Object.assign({}, word)); // Add self to the suggestion list
+      for (var s in obj.suggestions){
+        // var sugg = obj.suggestions[s];
+        var suggWord = this.jsonToWord(obj.suggestions[s]);
+        word.addSuggestion(suggWord);
       }
     }
-    console.log(html)
-    return html;
+
+    return word;
   }
 
-  // Grammar check
-  test(text: string){
-    return "x";
-  }
 }

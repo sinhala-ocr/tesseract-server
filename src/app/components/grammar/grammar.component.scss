@@ -11,7 +11,7 @@ mat-card {
 
 .input-textarea {
   height: 100px;
-  width: 100%;
+  // width: 100%;
   margin-left: auto;
   margin-right: auto;
   background-color: whitesmoke;
@@ -28,11 +28,6 @@ mat-card {
 }
 
 
-button {
-  float: right;
-  margin-left: 10px;
-}
-
 mat-checkbox {
   margin-right: 10px;
 }
@@ -48,23 +43,65 @@ mat-form-field {
 
 
 // Output text stiles
-:host ::ng-deep .modifier-in-the-begin-error { 
+:host ::ng-deep .flag-letter-character-legitimacy-error {
   background-color: yellow;
   color: red;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-:host ::ng-deep .vowel-in-the-middle-error { 
+:host ::ng-deep .flag-letter-grammar-legitimacy-error { 
   background-color: yellow;
-  color: red;
+  color: orange;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-:host ::ng-deep .not-in-dictionary-error { 
+:host ::ng-deep .flag-letter-changed { 
   background-color: yellow;
-  text-decoration: underline;
+  color: blue;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+:host ::ng-deep .flag-letter-optional { 
+  color: green;
   font-weight: bold;
 }
 
-:host ::ng-deep .not-in-exblock-error {
-  background-color: yellow;
+:host ::ng-deep .flag-letter-deleted { 
+  color: gray;
+  font-weight: bold;
+  text-decoration: line-through;
+  cursor: pointer;
+}
+
+:host ::ng-deep .flag-letter-inserted { 
   color: blue;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+:host ::ng-deep .flag-word-not-in-dictionary { 
+  background-color: yellow;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+:host ::ng-deep .flag-word-has-suggestions { 
+  // text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+.container {
+  display: table;
+  width: 100%;
+}
+
+.container div {
+  display: table-cell;
+  width: 50%;
 }

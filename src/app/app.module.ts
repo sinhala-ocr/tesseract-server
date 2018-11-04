@@ -4,6 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
+
 import {MatButtonModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
@@ -14,6 +15,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu';
+
 
 import {AppRouting} from './app.routing';
 import {environment} from '../environments/environment';
@@ -75,6 +78,7 @@ import {TessconfigComponent} from './components/tessconfig/tessconfig.component'
     MatDialogModule,
     MatListModule,
     MatExpansionModule,
+    MatMenuModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],

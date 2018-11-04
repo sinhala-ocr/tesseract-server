@@ -7,7 +7,8 @@ module.exports = {
     dictionary.getAllWords(function (err, result){
       doc.forEach(function(word){
         if (result.indexOf(word.value) == -1){
-          docUtils.setError(word, "NOT_IN_DICTIONARY_ERROR");
+          docUtils.addFlag(word, "NOT_IN_DICTIONARY");
+          word['level'] = '2';
         }
       })
       callback(false, doc);

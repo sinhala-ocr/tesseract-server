@@ -16,7 +16,8 @@ module.exports = {
       doc.forEach(function(word){
         for (let i = 0; i < word.letters.length; ++i){
           if (characters.indexOf(word.letters[i].value) == -1){
-            docUtils.setError(word.letters[i], "NOT_IN_EXBLOCK_ERROR");
+            docUtils.addFlag(word.letters[i], "CHARACTER_LEGITIMACY_ERROR");
+            word['level'] = '1';
           }
         }
       })

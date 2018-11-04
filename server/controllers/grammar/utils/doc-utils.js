@@ -37,12 +37,12 @@ module.exports = {
 
   },
 
-  // Set error message in the doc component
-  setError(comp, errorMessage, callback){
-    if (!('errors' in comp)){
-      comp['errors'] = [];
+  // Add flag in the doc component
+  addFlag(comp, flag, callback){
+    if (!('flags' in comp)){
+      comp['flags'] = [];
     }
-    comp['errors'].push(errorMessage);
+    comp['flags'].push(flag);
     return comp;
   }
 }
