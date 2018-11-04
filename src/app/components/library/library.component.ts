@@ -7,6 +7,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class LibraryComponent implements OnInit {
 
+  title = 'JavaSampleApproach';
+  description = 'Angular-SpringBoot Demo';
+
   constructor() {
   }
 

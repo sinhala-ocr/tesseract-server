@@ -39,7 +39,6 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {TessconfigComponent} from './components/tessconfig/tessconfig.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

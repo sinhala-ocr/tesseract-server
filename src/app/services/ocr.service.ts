@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpEventType, HttpRequest, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpEventType, HttpHeaders, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import * as _moment from 'moment';
 
@@ -18,6 +18,7 @@ export class OcrService {
     // Timestamp
     const now       = _moment();
     const timestamp = now.format('YYYYMMDDHHmmss');
+    const dirPath   = '/Users/ivantha/Git/ocr/tess-deploy/storage/library/' + timestamp;
 
     files.forEach(file => {
       // create a new multipart-form for every file
@@ -26,8 +27,9 @@ export class OcrService {
 
       // create a http-post request and pass the form
       // tell it to report the upload progress
-      const req = new HttpRequest('POST', 'http://localhost:4000/api/ocr/process/txt', formData, {
-        reportProgress: true
+      const req = new HttpRequest('POST', 'http://localhost:8080/upload/post', formData, {
+        reportProgress: true,
+        responseType: 'text'
       });
 
       // create a new progress-subject for every file
@@ -43,12 +45,24 @@ export class OcrService {
           // pass the percentage into the progress-stream
           progress.next(percentDone);
         } else if (event instanceof HttpResponse) {
-
           // Close the progress-stream if we get an answer form the API
           // The upload is complete
           progress.complete();
+
+          // Process
+          const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json'
+            }),
+            params: {
+              outputDirPath: dirPath + '/' + file.name.split('.').slice(0, -1).join('.'),
+              originalFileName: file.name
+            }
+          };
+          this.http.post<any>('http://localhost:8080/process', {}, httpOptions).toPromise()
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
         } else {
-          // console.log(event);
         }
       });
 
