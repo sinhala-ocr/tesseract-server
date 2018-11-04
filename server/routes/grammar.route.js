@@ -72,6 +72,34 @@ router.post('/', (req, res) => {
   })
 });
 
+// Get output file list
+router.get('/output-file-list', (req, res) => {
+  const grammarHelpers = require('../controllers/grammar/utils/grammar-helpers');
+  const LIBRARY_PATH = '../storage/library';
+  grammarHelpers.getOutputFiles(LIBRARY_PATH, function(err, result){
+    if (err){
+      res.send({});
+    }
+    res.send(result)
+  })
+});
+
+// Get output file content
+router.get('/load-file', (req, res) => {
+  const grammarHelpers = require('../controllers/grammar/utils/grammar-helpers');
+  var filename = req.query.filename;
+  if (!filename){
+    res.send({});
+    return;
+  }
+  grammarHelpers.loadFile(filename, function(err, result){
+    if (err){
+      res.send({});
+    }
+    res.send(result)
+  })
+});
+
 
 // Test
 router.post('/test', (req, res) => {
