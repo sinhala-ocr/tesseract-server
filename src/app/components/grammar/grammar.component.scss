@@ -44,21 +44,21 @@ mat-form-field {
 
 // Output text stiles
 :host ::ng-deep .flag-letter-character-legitimacy-error {
-  background-color: yellow;
+  // background-color: yellow;
   color: red;
   font-weight: bold;
   cursor: pointer;
 }
 
 :host ::ng-deep .flag-letter-grammar-legitimacy-error { 
-  background-color: yellow;
+  // background-color: yellow;
   color: orange;
   font-weight: bold;
   cursor: pointer;
 }
 
 :host ::ng-deep .flag-letter-changed { 
-  background-color: yellow;
+  // background-color: yellow;
   color: blue;
   font-weight: bold;
   cursor: pointer;
@@ -83,7 +83,7 @@ mat-form-field {
 }
 
 :host ::ng-deep .flag-word-not-in-dictionary { 
-  background-color: yellow;
+  // background-color: yellow;
   text-decoration: underline;
   font-weight: bold;
   cursor: pointer;
@@ -104,4 +104,6 @@ mat-form-field {
 .container div {
   display: table-cell;
   width: 50%;
+  background-color: aliceblue;
+  min-height: 500px;
 }

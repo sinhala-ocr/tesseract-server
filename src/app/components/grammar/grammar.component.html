@@ -1,12 +1,30 @@
 <mat-card class="input-mat-card">
 
+    <!-- Output file selector -->
     <mat-form-field>
-        <textarea class="input-textarea" matInput placeholder="Input text" [(ngModel)]="inputText"></textarea>
+        <mat-select [(value)]="selectedFile" placeholder="Select a file">
+            <mat-option *ngFor="let file of fileList" [value]="file.path">
+                {{file.name}}
+            </mat-option>
+        </mat-select>
     </mat-form-field>
 
     <div>
-        <button mat-stroked-button color="primary" (click)="onClickProcessButton()">Process</button>
+        <button mat-stroked-button color="primary" (click)="onClickProcessButton()">Process</button>        
     </div> 
+
+    <table>
+            <tr>
+                <td class="flag-letter-character-legitimacy-error">Character Legitimacy Error</td>
+                <td class="flag-letter-grammar-legitimacy-error">Grammar Legitimacy Error</td>
+                <td class="flag-letter-changed">Changed letters</td>
+            </tr>
+            <tr>
+                <td class="flag-letter-optional">Optional letters</td>
+                <td class="flag-letter-deleted">Deleted letters</td>
+                <td class="flag-word-not-in-dictionary">Not in dictionary</td>
+            </tr>
+    </table>
 
     <div class="container">
         <!-- Original text area -->

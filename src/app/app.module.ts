@@ -16,6 +16,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 import {AppRouting} from './app.routing';
@@ -79,6 +81,7 @@ import {TessconfigComponent} from './components/tessconfig/tessconfig.component'
     MatListModule,
     MatExpansionModule,
     MatMenuModule,
+    MatSelectModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],

@@ -14,11 +14,17 @@ import {Letter} from '../../models/letter';
 export class GrammarComponent implements OnInit {
   public inputText;
   public outputText;
+  public fileList;
+  public selectedFile;
   public temp = ``;
 
   public docModel: Word[];
 
   constructor(private http: HttpClient, public grammarService: GrammarService, private docService: DocService) {
+    grammarService.getOutputFileList().subscribe((res) => {
+      this.fileList = res;
+    });
+
     this.temp = `[
       {
         "value": "sumedhe",
@@ -92,16 +98,14 @@ export class GrammarComponent implements OnInit {
 
   // On click process button
   onClickProcessButton(){
-
-    // this.docModel = this.docService.docToModel(this.temp);
-
-    this.grammarService.grammarCheck(this.inputText).subscribe((res) => {
-      this.docModel = this.docService.docToModel(JSON.stringify(res));
-      // this.docModel = this.docService.docToModel(this.temp);
+    if (!this.selectedFile) return;
+    
+    this.grammarService.grammarCheck(this.selectedFile).subscribe((res) => {
+      this.inputText = res['input']; 
+      this.docModel = this.docService.docToModel(JSON.stringify(res['output']));
     }, (err) => {
       console.log(err);
     });
-    
   }
 
   // On suggestion word clicked on word dropdown menu

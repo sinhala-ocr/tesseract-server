@@ -62,6 +62,23 @@ router.post('/character-legitimacy-check', (req, res) => {
 
 // Check all
 router.post('/', (req, res) => {
+  const grammarHelpers = require('../controllers/grammar/utils/grammar-helpers');
+  const grammarCheck = require('../controllers/grammar/grammar');
+  var filename = req.body.filename;
+  grammarHelpers.loadFile(filename, function(err, inputText){
+    if (err) res.send({});
+    grammarCheck.check(inputText, function(err, result){
+      if (err) res.send({});
+      res.send({
+        "input": inputText,
+        "output": result
+      });
+    })
+  })
+});
+
+// Check all
+router.post('/custom', (req, res) => {
   const grammarCheck = require('../controllers/grammar/grammar');
   var text = req.body.text;
   grammarCheck.check(text, function(err, result){

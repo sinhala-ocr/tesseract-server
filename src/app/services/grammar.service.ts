@@ -11,13 +11,23 @@ export class GrammarService {
 
   readonly baseURL = 'http://localhost:4000/api/grammar';
 
-  // Grammar check
-  grammarCheck(text: string){
-    // console.log(text);
+  // Grammar check for output
+  grammarCheck(filename: string){
     var data = {
-      text: text
+      filename: filename
     }
     return this.http.post(this.baseURL, data);
+  }
+
+  // Get File list
+  getOutputFileList(){
+    return this.http.get(this.baseURL + '/output-file-list');
+  }
+
+
+  // Load file from the server
+  loadFile(path: string){
+    return this.http.get(this.baseURL + '/load-file?filename=' + path);
   }
 
 
