@@ -8,7 +8,23 @@ import * as _moment from 'moment';
 })
 export class OcrService {
 
+  private libraryPath: string;
+
   constructor(private http: HttpClient) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      params: {
+        dir: 'TESS_STORAGE_LIBRARY'
+      }
+    };
+
+    this.http.get<any>('http://localhost:8080/admin/path', httpOptions).toPromise()
+      .then(res => {
+        this.libraryPath = res.savedPath;
+      })
+      .catch(err => console.log(err));
   }
 
   public upload(files: Set<File>): { [key: string]: Observable<number> } {
@@ -18,7 +34,7 @@ export class OcrService {
     // Timestamp
     const now       = _moment();
     const timestamp = now.format('YYYYMMDDHHmmss');
-    const dirPath   = '/Users/ivantha/Git/ocr/tess-deploy/storage/library/' + timestamp;
+    const dirPath   = this.libraryPath + timestamp;
 
     files.forEach(file => {
       // create a new multipart-form for every file

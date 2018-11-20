@@ -36,6 +36,7 @@
     "@angular/service-worker": "^6.1.9",
     "@types/socket.io-client": "^1.4.32",
     "axios": "^0.18.0",
+    "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "config": "^2.0.1",
     "core-js": "^2.5.4",

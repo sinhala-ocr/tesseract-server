@@ -22,7 +22,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Set api routes
-const routes = require('./routes/index.route');
+const routes = require('./routes/index');
 app.use('/api', routes);
 
 // Catch all other routes and return the index file
