@@ -34,7 +34,7 @@ export class OcrService {
     // Timestamp
     const now       = _moment();
     const timestamp = now.format('YYYYMMDDHHmmss');
-    const dirPath   = this.libraryPath + timestamp;
+    const dirPath   = this.libraryPath + '/' + timestamp;
 
     files.forEach(file => {
       // create a new multipart-form for every file
