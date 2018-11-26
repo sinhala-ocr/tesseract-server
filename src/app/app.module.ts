@@ -19,7 +19,6 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 
 import {AppRouting} from './app.routing';
-import {environment} from '../environments/environment';
 
 import {OcrService} from './services/ocr.service';
 import {GrammarService} from './services/grammar.service';
@@ -39,7 +38,6 @@ import {ProfileComponent} from './components/profile/profile.component';
 import {SignInComponent} from './components/sign-in/sign-in.component';
 import {SignUpComponent} from './components/sign-up/sign-up.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
-import {ServiceWorkerModule} from '@angular/service-worker';
 import {TessconfigComponent} from './components/tessconfig/tessconfig.component';
 
 @NgModule({
@@ -79,9 +77,7 @@ import {TessconfigComponent} from './components/tessconfig/tessconfig.component'
     MatListModule,
     MatExpansionModule,
     MatMenuModule,
-    MatSelectModule,
-
-    // ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
+    MatSelectModule
   ],
   providers: [
     OcrService,
