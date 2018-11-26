@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpEventType, HttpHeaders, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import * as _moment from 'moment';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class OcrService {
       }
     };
 
-    this.http.get<any>('http://localhost:8080/admin/path', httpOptions).toPromise()
+    this.http.get<any>(`http://${environment.server_url}:8080/admin/path`, httpOptions).toPromise()
       .then(res => {
         this.libraryPath = res.savedPath;
       })
@@ -43,7 +44,7 @@ export class OcrService {
 
       // create a http-post request and pass the form
       // tell it to report the upload progress
-      const req = new HttpRequest('POST', 'http://localhost:8080/upload/post', formData, {
+      const req = new HttpRequest('POST', `http://${environment.server_url}:8080/upload/post`, formData, {
         reportProgress: true,
         responseType: 'text'
       });
@@ -75,7 +76,7 @@ export class OcrService {
               originalFileName: file.name
             }
           };
-          this.http.post<any>('http://localhost:8080/process', {}, httpOptions).toPromise()
+          this.http.post<any>(`http://${environment.server_url}:8080/process`, {}, httpOptions).toPromise()
             .then(res => console.log(res))
             .catch(err => console.log(err));
         } else {

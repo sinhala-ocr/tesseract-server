@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class TessdataService {
   }
 
   public getTrainedData(): Promise<Object> {
-    return this.http.get('http://localhost:8080/tessconfig/traineddata/all').toPromise();
+    return this.http.get(`http://${environment.server_url}:8080/tessconfig/traineddata/all`).toPromise();
   }
 
   public setDefaultTrainedData(id: string) {
@@ -23,7 +24,7 @@ export class TessdataService {
       }
     };
 
-    return this.http.post<any>('http://localhost:8080/tessconfig/traineddata/setdefault', {}, httpOptions).toPromise()
+    return this.http.post<any>(`http://${environment.server_url}:8080/tessconfig/traineddata/setdefault`, {}, httpOptions).toPromise()
       .catch(err => console.log(err));
   }
 
@@ -39,7 +40,7 @@ export class TessdataService {
       }
     };
 
-    return this.http.post<any>('http://localhost:8080/tessconfig/traineddata/save', {}, httpOptions).toPromise()
+    return this.http.post<any>(`http://${environment.server_url}:8080/tessconfig/traineddata/save`, {}, httpOptions).toPromise()
       .catch(err => console.log(err));
   }
 
@@ -53,7 +54,7 @@ export class TessdataService {
       }
     };
 
-    return this.http.delete<any>('http://localhost:8080/tessconfig/traineddata/delete', httpOptions).toPromise()
+    return this.http.delete<any>(`http://${environment.server_url}:8080/tessconfig/traineddata/delete`, httpOptions).toPromise()
       .catch(err => console.log(err));
   }
 

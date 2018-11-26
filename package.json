@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "server/server.js",
   "scripts": {
-    "start": "",
+    "start": "npm run build && PHP -S localhost:4200 -t /dist/tesseract-server/index.html",
     "build": "ng build --prod",
     "watch": "ng serve",
     "clean": "rimraf dist/",
