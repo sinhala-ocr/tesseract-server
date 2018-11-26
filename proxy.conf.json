@@ -1,0 +1,14 @@
+{
+  "/upload/post": {
+    "target": "http://localhost:8080",
+    "secure": false
+  },
+  "/process": {
+    "target": "http://localhost:8080",
+    "secure": false
+  },
+   "/admin": {
+    "target": "http://localhost:8080",
+    "secure": false
+  }
+}
