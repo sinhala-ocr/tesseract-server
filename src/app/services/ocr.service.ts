@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpEventType, HttpHeaders, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import * as _moment from 'moment';
-import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
