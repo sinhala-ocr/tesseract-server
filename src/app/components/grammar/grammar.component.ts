@@ -97,6 +97,14 @@ export class GrammarComponent implements OnInit {
 ]`;
   }
 
+
+  // Render output
+  onClickSaveModified(){
+    this.grammarService.saveFile(this.docService.modelToDoc(this.docModel), this.selectedFile).subscribe((res) => {
+      console.log(res);
+    })
+  }
+
   // On click process button
   onClickProcessButton(){
     if (!this.selectedFile) return;
@@ -124,6 +132,8 @@ export class GrammarComponent implements OnInit {
   onLetterResetClick(letter: Letter){
     letter.reset();
   }
+
+
 
   ngOnInit() {
   }

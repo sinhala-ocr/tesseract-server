@@ -26,4 +26,9 @@ export class GrammarService {
     return this.http.get(this.baseURL + '/load-recog-output?testDirPath=' + path);
   }
 
+  // Save modified output in the server
+  saveFile(text: string, path: string){
+    return this.http.get(this.baseURL + '/save-modified-output?testDirPath=' + path + "&text=" + text);
+  }
+
 }

@@ -25,6 +25,22 @@ export class DocService {
     return docModel;
   }
 
+  // Convert document model to text
+  modelToDoc(doc: Word[]){
+    var text = "";
+    doc.forEach((word) => {
+      word.getLetters().forEach((letter)=> {
+        if (letter.isModified){
+          text += letter.newValue;
+        } else {
+          text += letter.value;
+        }
+      })
+      text += " ";
+    })
+    return text;
+  }
+
   // Convert json object to word object
   private jsonToWord(obj: any){
     var word = new Word(obj.value);
