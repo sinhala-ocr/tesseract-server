@@ -23,6 +23,7 @@ export class GrammarComponent implements OnInit {
   constructor(private http: HttpClient, public grammarService: GrammarService, private docService: DocService) {
     grammarService.getOutputFileList().subscribe((res) => {
       this.fileList = res;
+      console.log(res)
     });
 
     this.temp = `[
@@ -101,7 +102,8 @@ export class GrammarComponent implements OnInit {
     if (!this.selectedFile) return;
     
     this.grammarService.grammarCheck(this.selectedFile).subscribe((res) => {
-      this.inputText = res['input']; 
+      console.log(res);
+      this.inputText = res['input'].split("\n").join("<br>"); 
       this.docModel = this.docService.docToModel(JSON.stringify(res['output']));
     }, (err) => {
       console.log(err);

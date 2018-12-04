@@ -13,6 +13,7 @@
         <button mat-stroked-button color="primary" (click)="onClickProcessButton()">Process</button>        
     </div> 
 
+    <br>
     <table>
             <tr>
                 <td class="flag-letter-character-legitimacy-error">Character Legitimacy Error</td>
@@ -26,6 +27,7 @@
             </tr>
     </table>
 
+    <br>
     <div class="container">
         <!-- Original text area -->
         <div class="left-panel" [(innerHtml)]="inputText"> </div>
@@ -34,9 +36,19 @@
         <div class="right-panel">
             <span *ngFor="let word of docModel">
 
+                    <!-- Level -1 word -->
+                    <ng-container *ngIf="word.level == -1">
+                            <ng-container *ngIf="word.value == 'NEW_LINE'"><br></ng-container>
+                    </ng-container>
+
+                    <!-- Level 0 word -->
+                    <ng-container *ngIf="word.level == 0">
+                            <span *ngFor="let letter of word.getLetters()">{{letter.value}}</span>
+                    </ng-container>
+
                     <!-- Level 1 word -->
                     <ng-container *ngIf="word.level == 1">
-                            <span>
+                            <span class="flag-word-not-in-dictionary">
                                 <ng-container *ngFor="let letter of word.getLetters()">
                                     <!-- If flagged: show menu -->
                                     <ng-container *ngIf="letter.flags.length > 0">
