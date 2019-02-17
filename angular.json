@@ -60,7 +60,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "tesseract-server:build"
+            "browserTarget": "tesseract-server:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

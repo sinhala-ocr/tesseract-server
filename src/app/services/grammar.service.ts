@@ -9,7 +9,7 @@ export class GrammarService {
   constructor(private http: HttpClient) {
   }
 
-  readonly baseURL = 'http://localhost:8080/grammar';
+  readonly baseURL = '/api/grammar';
 
   // Grammar check for output
   grammarCheck(path: string) {
