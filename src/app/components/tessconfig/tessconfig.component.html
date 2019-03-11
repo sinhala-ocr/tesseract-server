@@ -1,0 +1,21 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let datum of trainedData; let i = index">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{datum.id}}</mat-panel-title>
+      <mat-panel-description>{{datum.timestamp}}</mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field><input matInput="matInput" placeholder="New trained-data name" value="{{datum.name}}"/>
+    </mat-form-field>
+    <mat-form-field><input matInput="matInput" placeholder="New trained-data description"
+                           value="{{datum.description}}"/></mat-form-field>
+    <button mat-raised-button="mat-raised-button" color="primary"
+            (click)="onClickSaveButton(datum.id, datum.name, datum.description)">Save
+    </button>
+    <button
+      mat-raised-button="mat-raised-button" color="warn" (click)="onClickDeleteButton(datum.id)">Delete
+    </button>
+    <button mat-raised-button="mat-raised-button" color="accent" (click)="onClickDefaultButton(datum.id)">Set as
+      default
+    </button>
+  </mat-expansion-panel>
+</mat-accordion>

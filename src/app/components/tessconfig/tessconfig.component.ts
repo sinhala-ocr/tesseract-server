@@ -3,7 +3,7 @@ import {TessdataService} from '../../services/tessdata.service';
 
 @Component({
   selector: 'app-tessconfig',
-  templateUrl: './tessconfig.component.pug',
+  templateUrl: './tessconfig.component.html',
   styleUrls: ['./tessconfig.component.scss']
 })
 export class TessconfigComponent implements OnInit {
