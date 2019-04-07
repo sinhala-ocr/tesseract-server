@@ -31,15 +31,15 @@ export class OcrService {
     // this will be the our resulting map
     const status = {};
 
-    // Timestamp
-    const now       = _moment();
-    const timestamp = now.format('YYYYMMDDHHmmss');
-    const dirPath   = this.libraryPath + '/' + timestamp;
-
     files.forEach(file => {
+      // Timestamp
+      const now       = _moment();
+      const timestamp = now.format('YYYYMMDDHHmmssSSS');
+
       // create a new multipart-form for every file
       const formData: FormData = new FormData();
       formData.append('file', file, file.name);
+      formData.append('pid', timestamp);
 
       // create a http-post request and pass the form
       // tell it to report the upload progress
@@ -71,7 +71,7 @@ export class OcrService {
               'Content-Type': 'application/json'
             }),
             params: {
-              outputDirPath: dirPath + '/' + file.name.split('.').slice(0, -1).join('.'),
+              pid: timestamp,
               originalFileName: file.name
             }
           };
