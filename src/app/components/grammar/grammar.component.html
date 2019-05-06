@@ -16,18 +16,21 @@
 
 
     <!-- Load files -->
-   <input type="file" #file style="display: none;" (change)="onFilesAdded()" multiple="multiple"/>
-
+    <input type="file" #file style="display: none;" (change)="onFilesAdded()" multiple="multiple"/>
+    
+    <div>
+        <button mat-stroked-button color="primary" (click)="onClickSelectOriginalFile()">Select Original File</button>  {{ this.originalTextFilename }}       
+    </div> 
     <div>
         <button mat-stroked-button color="primary" (click)="onClickSelectRecognizedFile()">Select Recognized File</button>  {{ this.recognizedTextFilename }}       
     </div> 
-
+    
     <!-- {{this.recognizedText}} -->
 
 
 
     <div>
-        <button mat-stroked-button color="primary" (click)="onClickProcessButton()">Process</button>        
+        <button mat-raised-button color="primary" (click)="onClickProcessButton()">Process</button>        
     </div> 
 
     <br>

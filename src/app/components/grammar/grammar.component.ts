@@ -4,6 +4,7 @@ import { GrammarService } from '../../services/grammar.service';
 import { DocService } from '../../services/doc.service';
 import {Word} from '../../models/word';
 import {Letter} from '../../models/letter';
+import { file } from 'babel-types';
 
 @Component({
   selector: 'app-grammar',
@@ -13,6 +14,7 @@ import {Letter} from '../../models/letter';
 })
 export class GrammarComponent implements OnInit {
   @ViewChild('file') file;
+  @ViewChild('fileOriginal') fileOriginal;
 
   public inputText;
   public outputText;
@@ -20,8 +22,11 @@ export class GrammarComponent implements OnInit {
   public selectedFile;
   public temp = ``;
 
+  private fileNumber;
   private recognizedText;
   private recognizedTextFilename;
+  private originalText;
+  private originalTextFilename;
   public docModel: Word[];
 
   constructor(private http: HttpClient, public grammarService: GrammarService, private docService: DocService) {
@@ -103,8 +108,14 @@ export class GrammarComponent implements OnInit {
 
 
   // Open Recognized file
+  onClickSelectOriginalFile(){
+      this.fileNumber = 0;
+      this.file.nativeElement.click();
+  }
+
   onClickSelectRecognizedFile(){
-    this.file.nativeElement.click();
+      this.fileNumber = 1;
+      this.file.nativeElement.click();
   }
 
   onFilesAdded() {
@@ -115,13 +126,19 @@ export class GrammarComponent implements OnInit {
         reader.readAsText(files[key]);
         var me = this;
         reader.onload = function () {
-          me.recognizedText = reader.result;
-          me.recognizedTextFilename = files[key].name
+            if (me.fileNumber == 0) {
+                me.originalText = reader.result;
+                me.originalTextFilename = files[key].name
+            } else {
+                me.recognizedText = reader.result;
+                me.recognizedTextFilename = files[key].name
+            }
         }
         return
       }
     }
   }
+
 
 
   // Render output
