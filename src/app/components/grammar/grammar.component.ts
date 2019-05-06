@@ -24,6 +24,7 @@ export class GrammarComponent implements OnInit {
 
   private fileNumber;
   private recognizedText;
+  private recognizedFile;
   private recognizedTextFilename;
   private originalText;
   private originalTextFilename;
@@ -131,6 +132,7 @@ export class GrammarComponent implements OnInit {
                 me.originalTextFilename = files[key].name
             } else {
                 me.recognizedText = reader.result;
+                me.recognizedFile = files[key]
                 me.recognizedTextFilename = files[key].name
             }
         }

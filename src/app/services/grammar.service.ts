@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,11 @@ export class GrammarService {
 
   // Grammar check for output
   grammarCheck(text: string) {
-    return this.http.get(this.baseURL + '/process?text=' + text);
+    var headers = new HttpHeaders({
+        'Content-Type': 'text/plain'
+    });
+    
+    return this.http.post(this.baseURL + '/process', text, {headers: headers})
   }
 
   // Get File list
