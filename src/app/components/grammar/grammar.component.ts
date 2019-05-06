@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { GrammarService } from '../../services/grammar.service';
 import { DocService } from '../../services/doc.service';
@@ -12,12 +12,16 @@ import {Letter} from '../../models/letter';
   preserveWhitespaces: false
 })
 export class GrammarComponent implements OnInit {
+  @ViewChild('file') file;
+
   public inputText;
   public outputText;
   public fileList;
   public selectedFile;
   public temp = ``;
 
+  private recognizedText;
+  private recognizedTextFilename;
   public docModel: Word[];
 
   constructor(private http: HttpClient, public grammarService: GrammarService, private docService: DocService) {
@@ -98,6 +102,28 @@ export class GrammarComponent implements OnInit {
   }
 
 
+  // Open Recognized file
+  onClickSelectRecognizedFile(){
+    this.file.nativeElement.click();
+  }
+
+  onFilesAdded() {
+    const files: { [key: string]: File } = this.file.nativeElement.files;
+    for (const key in files) {
+      if (!isNaN(parseInt(key))) {
+        var reader = new FileReader();
+        reader.readAsText(files[key]);
+        var me = this;
+        reader.onload = function () {
+          me.recognizedText = reader.result;
+          me.recognizedTextFilename = files[key].name
+        }
+        return
+      }
+    }
+  }
+
+
   // Render output
   onClickSaveModified(){
     this.grammarService.saveFile(this.docService.modelToDoc(this.docModel), this.selectedFile).subscribe((res) => {
@@ -107,9 +133,9 @@ export class GrammarComponent implements OnInit {
 
   // On click process button
   onClickProcessButton(){
-    if (!this.selectedFile) return;
+    if (!this.recognizedText) return;
     
-    this.grammarService.grammarCheck(this.selectedFile).subscribe((res) => {
+    this.grammarService.grammarCheck(this.recognizedText).subscribe((res) => {
       console.log(res);
       this.inputText = res['input'].split("\n").join("<br>"); 
       this.docModel = this.docService.docToModel(JSON.stringify(res['output']));

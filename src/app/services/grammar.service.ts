@@ -12,8 +12,8 @@ export class GrammarService {
   readonly baseURL = '/api/grammar';
 
   // Grammar check for output
-  grammarCheck(path: string) {
-    return this.http.get(this.baseURL + '/process?testDirPath=' + path);
+  grammarCheck(text: string) {
+    return this.http.get(this.baseURL + '/process?text=' + text);
   }
 
   // Get File list

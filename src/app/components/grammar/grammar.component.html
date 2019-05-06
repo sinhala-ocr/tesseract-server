@@ -1,19 +1,5 @@
 <mat-card class="input-mat-card">
 
-    <!-- Output file selector -->
-    <mat-form-field>
-        <mat-select [(value)]="selectedFile" placeholder="Select a file">
-            <mat-option *ngFor="let file of fileList" [value]="file.path">
-                {{file.name}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <div>
-        <button mat-stroked-button color="primary" (click)="onClickProcessButton()">Process</button>        
-    </div> 
-
-    <br>
     <table>
             <tr>
                 <td class="flag-letter-character-legitimacy-error">Character Legitimacy Error</td>
@@ -26,6 +12,25 @@
                 <td class="flag-word-not-in-dictionary">Not in dictionary</td>
             </tr>
     </table>
+    <br>
+
+
+    <!-- Load files -->
+   <input type="file" #file style="display: none;" (change)="onFilesAdded()" multiple="multiple"/>
+
+    <div>
+        <button mat-stroked-button color="primary" (click)="onClickSelectRecognizedFile()">Select Recognized File</button>  {{ this.recognizedTextFilename }}       
+    </div> 
+
+    <!-- {{this.recognizedText}} -->
+
+
+
+    <div>
+        <button mat-stroked-button color="primary" (click)="onClickProcessButton()">Process</button>        
+    </div> 
+
+    <br>
 
     <br>
     <div class="container">
