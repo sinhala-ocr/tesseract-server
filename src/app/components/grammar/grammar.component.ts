@@ -5,6 +5,8 @@ import { DocService } from '../../services/doc.service';
 import {Word} from '../../models/word';
 import {Letter} from '../../models/letter';
 import { file } from 'babel-types';
+import * as FileSaver from 'file-saver';
+
 
 @Component({
   selector: 'app-grammar',
@@ -36,76 +38,6 @@ export class GrammarComponent implements OnInit {
       this.fileList = res;
       console.log(res)
     });
-
-    this.temp = `[
-      {
-        "value": "sumedhe",
-        "level": "2",
-        "flags": ["HAS_SUGGESTIONS"],
-        "letters": [
-          {"value":"s"},
-          {"value":"u"},
-          {"value":"m"},
-          {
-            "value":"e",
-            "flags": ["OPTIONAL"]
-          },
-          {"value":"d"},
-          {"value":"h"},
-          {"value":"e"}
-        ],
-        "suggestions": [
-          {
-            "value": "SUME",
-            "letters": [
-              {"value":"S"},
-              {"value":"U"},
-              {"value":"M"},
-              {"value":"E"}
-            ]
-          },
-          {
-            "value": "SUMEDHE",
-            "letters" : [
-              {"value":"S"},
-              {"value":"U"},
-              {"value":"M"},
-              {"value":"E"},
-              {"value":"D"},
-              {"value":"H"},
-              {"value":"E"}
-            ]
-          }
-        ]
-      },
-      {
-        "value": "diss",
-        "level": "1",
-        "letters": [
-          {"value":"d"},
-          {"value":"i"},
-          {
-            "value":"s",
-            "flags":["CHARACTER_LEGITIMACY_ERROR"]
-          },
-          {"value":"s"}
-        ],
-        "flags": ["NOT_IN_DICTIONARY_ERROR"]
-      },
-      {
-        "value": "abcd",
-        "level": "1",
-        "letters": [
-          {"value":"a"},
-          {"value":"b"},
-          {
-            "value":"c",
-            "flags":["GRAMMAR_LEGITIMACY_ERROR"]
-          },
-          {"value":"d"}
-        ]
-      }
-]`;
   }
 
 
@@ -180,6 +112,18 @@ export class GrammarComponent implements OnInit {
     letter.reset();
   }
 
+  // On click download button
+  onClickDownloadButton(){
+    if (this.recognizedFile == null) {
+        return;
+    }
+
+    var filename = this.recognizedFile.name; 
+    filename = filename.substring(0, filename.length-4) + ' (modified).txt';
+
+    const blob = new Blob([this.docService.modelToDoc(this.docModel)], {type: 'text/plain;charset=utf-8'});
+    FileSaver.saveAs(blob, filename);
+  }
 
 
   ngOnInit() {
@@ -187,3 +131,74 @@ export class GrammarComponent implements OnInit {
   }
 
 }
+
+// Sample responce doc format
+// `[
+//     {
+//       "value": "sumedhe",
+//       "level": "2",
+//       "flags": ["HAS_SUGGESTIONS"],
+//       "letters": [
+//         {"value":"s"},
+//         {"value":"u"},
+//         {"value":"m"},
+//         {
+//           "value":"e",
+//           "flags": ["OPTIONAL"]
+//         },
+//         {"value":"d"},
+//         {"value":"h"},
+//         {"value":"e"}
+//       ],
+//       "suggestions": [
+//         {
+//           "value": "SUME",
+//           "letters": [
+//             {"value":"S"},
+//             {"value":"U"},
+//             {"value":"M"},
+//             {"value":"E"}
+//           ]
+//         },
+//         {
+//           "value": "SUMEDHE",
+//           "letters" : [
+//             {"value":"S"},
+//             {"value":"U"},
+//             {"value":"M"},
+//             {"value":"E"},
+//             {"value":"D"},
+//             {"value":"H"},
+//             {"value":"E"}
+//           ]
+//         }
+//       ]
+//     },
+//     {
+//       "value": "diss",
+//       "level": "1",
+//       "letters": [
+//         {"value":"d"},
+//         {"value":"i"},
+//         {
+//           "value":"s",
+//           "flags":["CHARACTER_LEGITIMACY_ERROR"]
+//         },
+//         {"value":"s"}
+//       ],
+//       "flags": ["NOT_IN_DICTIONARY_ERROR"]
+//     },
+//     {
+//       "value": "abcd",
+//       "level": "1",
+//       "letters": [
+//         {"value":"a"},
+//         {"value":"b"},
+//         {
+//           "value":"c",
+//           "flags":["GRAMMAR_LEGITIMACY_ERROR"]
+//         },
+//         {"value":"d"}
+//       ]
+//     }
+// ]`;
