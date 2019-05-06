@@ -29,8 +29,16 @@ mat-card {
 
 button {
     margin-top: 5px;
+    margin-left: 5px;
 }
 
+mat-radio-group {
+    margin-left: 20px;
+}
+
+mat-radio-button {
+    margin-left: 10px;
+}
 
 mat-checkbox {
   margin-right: 10px;

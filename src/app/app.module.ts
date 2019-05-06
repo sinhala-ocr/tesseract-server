@@ -16,6 +16,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 import {AppRouting} from './app.routing';
 
@@ -76,7 +78,8 @@ import {TessconfigComponent} from './components/tessconfig/tessconfig.component'
     MatListModule,
     MatExpansionModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule
   ],
   providers: [
     OcrService,

@@ -21,6 +21,7 @@ export class GrammarComponent implements OnInit {
   public fileList;
   public selectedFile;
   public temp = ``;
+  public openedFile;
 
   private fileNumber;
   private recognizedText;
@@ -108,6 +109,7 @@ export class GrammarComponent implements OnInit {
   }
 
 
+
   // Open Recognized file
   onClickSelectOriginalFile(){
       this.fileNumber = 0;
@@ -181,6 +183,7 @@ export class GrammarComponent implements OnInit {
 
 
   ngOnInit() {
+    this.openedFile = "RECOGNIZED";
   }
 
 }

@@ -19,24 +19,45 @@
     <input type="file" #file style="display: none;" (change)="onFilesAdded()" multiple="multiple"/>
     
     <div>
-        <button mat-stroked-button color="primary" (click)="onClickSelectOriginalFile()">Select Original File</button>  {{ this.originalTextFilename }}       
+        <button mat-stroked-button color="primary" (click)="onClickSelectOriginalFile()">Select Original File</button> : {{ this.originalTextFilename }}       
     </div> 
     <div>
-        <button mat-stroked-button color="primary" (click)="onClickSelectRecognizedFile()">Select Recognized File</button>  {{ this.recognizedTextFilename }}       
+        <button mat-stroked-button color="primary" (click)="onClickSelectRecognizedFile()">Select Recognized File</button> : {{ this.recognizedTextFilename }}       
     </div> 
     
-
-
+    <br>
     <div>
-        <button mat-raised-button color="primary" (click)="onClickProcessButton()">Process</button>        
-    </div> 
+        <!-- Process Button -->
+        <button mat-raised-button color="primary" (click)="onClickProcessButton()">Process</button>      
+          
+        <!-- Save button -->
+        <button mat-stroked-button color="primary" (click)="onClickSaveModified()">Save modified</button>  
+        
+        <!-- Select compare file type -->
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="openedFile">
+            <mat-radio-button value="ORIGINAL">Original Text</mat-radio-button>
+            <mat-radio-button value="RECOGNIZED">Recognized Text</mat-radio-button>
+        </mat-radio-group>
 
+    </div> 
+        
     <br>
 
     <br>
     <div class="container">
         <!-- Original text area -->
-        <div class="left-panel" [(innerHtml)]="inputText"> </div>
+        <ng-container *ngIf="openedFile == 'ORIGINAL'">
+                <div class="left-panel">
+                     <p style="margin-bottom: 2rem;white-space:pre-wrap;">{{originalText}}</p>    
+                </div>
+        </ng-container>
+        <ng-container *ngIf="openedFile == 'RECOGNIZED'">
+                <div class="left-panel">
+                    <p style="margin-bottom: 2rem;white-space:pre-wrap;">{{recognizedText}}</p>    
+                </div>
+        </ng-container>
+
+      
 
         <!-- Editin area -->
         <div class="right-panel">
@@ -107,10 +128,7 @@
         </ng-template>
     </mat-menu>
 
-    <!-- Save button -->
-    <div>
-        <button mat-stroked-button color="primary" (click)="onClickSaveModified()">Save modified</button>        
-    </div> 
+
  
 
 </mat-card>
